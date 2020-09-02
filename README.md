@@ -39,8 +39,10 @@ Tools:
 
   - [draw.io](https://www.diagrams.net/)
 
-![old database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_v1-0.jpg)
+Original Database Structure
+![old database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_original.jpg)
 
+Improved Database Structure
 ![new database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_v1-1.jpg)
 
 #### Script for new Database design
@@ -50,4 +52,5 @@ Tools:
   - [XAMPP](https://www.apachefriends.org/)
   - [MYSQL Workbench](https://www.mysql.com/products/workbench/)
 
-![Create Database/Structure](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/invoicing.sql)
+- Link:
+  - [Create Database/Structure](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/invoicing.sql)
