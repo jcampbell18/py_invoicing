@@ -1,0 +1,98 @@
+/* GENERAL */
+
+html {
+
+  min-height: 100%;
+
+  margin-bottom: 0px;
+
+}
+
+
+
+body {
+
+  background: #004552;
+
+  color: #ffffff;
+
+  font: 12px Arial,Tahoma,sans-serif;
+
+}
+
+
+
+img {
+
+  border: 0px;
+
+/*  display: block; */
+
+  margin: 0px;
+
+  padding: 0px;
+
+}
+
+
+
+table {
+
+  margin: 0px;
+
+  border: 0px;
+
+  padding: 0px;
+
+  border-collapse: collapse;
+
+}
+
+
+
+td {
+
+  padding: 0px;
+
+}
+
+
+
+a, a:visited, a:active {
+
+  color: #004552;
+
+  background: inherit;
+
+  text-decoration: none;
+
+}
+
+
+
+a:hover {
+
+  color: #004552;
+
+  background: inherit;
+
+  text-decoration: underline;
+
+}
+
+
+
+.inputbox {
+
+  color: #000000;
+
+  background: #FFFFFF;
+
+  border: 1px solid #004552;
+
+  margin: 0px;
+
+  padding: 0px;
+
+}
+
