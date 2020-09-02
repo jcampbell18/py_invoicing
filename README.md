@@ -1,6 +1,6 @@
 # Invoicing
 
-Intro: This is an older invoicing project that is being revisited. I had completed a 4 year residential carpentry apprenticeship program and acquired my journeyman (national) license through the Home Builders Association in 2012. From that point, I branched off onto my own as a General Contractor and started contract-based jobs on bank-owned properties. I'd like to think that I am a very organzied person, so after a couple of contract jobs, I felt that I needed to come up with an invoicing system that fit my needs.  Needless to say that I did not want to spend the money to purchase Quickbooks. After discussing my client's needs (and frustrations with previous contractors), I was able to form a game plan. By the way, the finished product had been written in PHP5, HTML/CSS with MYSQL database integration. 
+Intro: This is an older invoicing project that is being revisited. I had completed a 4 year residential carpentry apprenticeship program and acquired my journeyman (national) license through the Home Builders Association in 2012. From that point, I branched off onto my own as a General Contractor and started contract-based jobs on bank-owned properties. I'd like to think that I am a very organzied person, so after a couple of contract jobs, I felt that I needed to come up with an invoicing system that fit my needs.  Needless to say that I did not want to spend the money to purchase Quickbooks. After discussing with my clients about their needs (and frustrations with previous contractors), I was able to form a game plan. By the way, the finished product had been written in PHP5, HTML/CSS with MYSQL database integration. 
 
   - Client needs:
     - access to website
@@ -27,7 +27,7 @@ Tools:
 - Back-End Development: [Golang](https://golang.org/) and/or [Django](https://www.djangoproject.com/)
 - Database: [MariaDB](https://mariadb.org/)
 - Version Control: [Git](https://git-scm.com/)
-- Cloud: AWS
+- Cloud: [AWS](https://aws.amazon.com/)
 
 ## Step 1. Database
 
