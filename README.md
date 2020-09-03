@@ -72,7 +72,49 @@ Improved Database Structure
 
   - [Build a REST API in 30 minutes with Django REST framework](https://medium.com/swlh/build-your-first-rest-api-with-django-rest-framework-e394e39a482c)
 
-  
+1. Install Python3
+
+2. Install Git Bash
+
+3. Update pip (a good habit to have)
+
+  <code>python -m pip install --upgrade pip</code>
+
+4. Setup virtual environment
+
+  - command: python -m venv {virtual environment name}
+
+  <code>python -m venv venv</code>
+
+5. Activate virtual environment
+
+  <code>source venv/Scripts/activate</code>
+
+  - (venv) will appear on the command line to show you have activated the virtual environment
+
+6. Install Django
+
+  <code>pip install Django</code>
+
+7. Start Django project
+
+  - command: django-admin.py startproject {project name}
+
+  <code>django-admin.py startproject backroom</code>
+
+8. Verify it works
+
+  - command: cd {project name}
+
+  <code>cd backroom</code>
+
+  <code>python manage.py runserver</code>
+
+  - with Internet browser (e.g., Chrome)
+
+    - go to URL: http://127.0.0.1:8000/
+
+  - exit the server in Git Bash: Ctrl + C
 
 
 ### Golang
