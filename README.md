@@ -8,7 +8,7 @@ Background: This is an older invoicing project that is being revisited. I had co
     - receive or view invoice
     - view or download images attached to invoice (before, during and after images of property)
     
-  - My needs:
+  - Business needs:
     - access to website via desktop computer or mobile
     - track expenses, vehicle usage, receipts
     - reporting system for taxes
@@ -81,6 +81,8 @@ Improved Database Structure
 
   - [Data Flair](https://data-flair.training/blogs/install-django/)
 
+  - [Django Best Practices: Projects vs Apps](https://learndjango.com/tutorials/django-best-practices-projects-vs-apps)
+
 #### Environment Setup
 
 1. Install [Python3](https://www.python.org/downloads/)
@@ -127,9 +129,25 @@ Improved Database Structure
 
 7. Start Django project
 
-  7.1 command: django-admin.py startproject {project name}
+  7.1. command: django-admin.py startproject {project name}
 
   <code>django-admin.py startproject backroom</code>
+
+  7.2. command: cd {project name}
+
+  <code>cd backroom</code>
+
+  7.3. edit settings.py in {project name}
+
+    7.3.1. in 'INSTALLED_APPS', add lines (at end):
+
+      <code>'rest_framework',</code>
+      <code>'corsheaders',</code>
+      <code>'django_mysql', </code>
+
+    7.3.2. in 'MIDDLEWARE', add line (at top):
+
+      <code>'corsheaders.middleware.CorsMiddleware',</code>
 
 8. Verify it works
 
@@ -147,11 +165,53 @@ Improved Database Structure
 
   8.4. exit the server in Git Bash: Ctrl + C
 
-9. Models
+9. Django App
 
-  9.1. Create Django Model
+  9.1. Migrations
 
-  <code>django-admin startapp 
+    9.1.1. command for integrating the project (checks for new additions)
+
+      <code>python manage.py makemigrations</code>
+
+    9.12. command for adding the new additions
+
+      <code>python manage.py migrate</code>
+
+  9.3. Django Model
+
+    9.3.1. command: django-admin startapp {app name}
+
+      <code>django-admin startapp access_levels</code>
+
+    9.3.2. edit settings.py in {project name}
+
+      9.3.2.1. in 'INSTALLED_APPS', add lines (at end):
+
+      <code># Apps</code>
+
+      <code>'access_levels',</code>
+
+    9.3.3. edit models.py in {app name}
+
+      <code>
+      from django.db import models
+
+      class AccessLevel(models.Model):
+          name = models.TextField(max_length = 50)
+          description = models.TextField(max_length = 250)
+      </code>
+
+    9.3.4. command for integrating the project (checks for new additions)
+
+      <code>python manage.py makemigrations</code>
+
+    9.3.5. command for adding the new additions
+
+      <code>python manage.py migrate</code>
+
+  9.x. create super user account
+
+  <code>python manage.py createsuperuser</code> 
 
 10. Views
 
