@@ -53,4 +53,8 @@ Improved Database Structure
   - [MYSQL Workbench](https://www.mysql.com/products/workbench/)
 
 - Link:
+
   - [Create Database/Structure](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/invoicing.sql)
+  - [Populate Database with Data](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/populateWithData.sql)
+
+## Step 2. Create Back-End
