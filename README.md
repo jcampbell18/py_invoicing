@@ -59,10 +59,43 @@ Improved Database Structure
   - [XAMPP](https://www.apachefriends.org/)
   - [MYSQL Workbench](https://www.mysql.com/products/workbench/)
 
-- Link:
+- Links:
 
   - [Create Database/Structure](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/invoicing.sql)
   - [Populate Database with Data](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/populateWithData.sql)
 
 ## Step 2. Create Back-End
 
+- coming soon!
+
+## Git
+
+Git Reference: [Atlassian](https://www.atlassian.com/git/tutorials)
+Git Tutorials: [Git Immersion](https://gitimmersion.com/index.html)
+
+- configuration (also in .gitconfig)
+  - add/view user name
+    <code>git config --global user.name</code>
+  - add/view user email
+    <code>git config --global user.email</code>
+
+- cloning
+  <code>git clone https://github.com/username/repository-name.git</code>
+
+- check status
+  <code>git status</code>
+
+- staging changes
+  - by filename
+    <code>git add filename</code>
+  - all changes
+    <code>git add .</code>
+
+- commiting changes
+  <code>git commit -m "message"</code>
+
+- uploading/pushing to repository
+  <code>git push</code>
+
+- downloading/pulling from repository
+  <code>git pull</code>
