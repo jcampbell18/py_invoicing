@@ -36,6 +36,8 @@ Tools:
 - Cloud: [AWS](https://aws.amazon.com/)
 - IDE: [Visual Studio Code](https://code.visualstudio.com/)
 
+## 
+
 ## Step 1. Database
 
 ### Database reDesign
@@ -57,12 +59,16 @@ Improved Database Structure
 - Tools:
 
   - [XAMPP](https://www.apachefriends.org/)
+    - used PhpMyAdmin to create database and structure, and populate data
+
   - [MYSQL Workbench](https://www.mysql.com/products/workbench/)
+    - used to create foreign keys and scripts
+    - not needed for the scripts
 
 - Links:
 
-  - [Create Database/Structure](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/invoicing.sql)
-  - [Populate Database with Data](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/populateWithData.sql)
+  - [Create Database/Structure](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/structure.sql)
+  - [Populate Database with Data](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/data.sql)
 
 ## Step 2. Create Back-End
 
@@ -72,9 +78,13 @@ Improved Database Structure
 
   - [Build a REST API in 30 minutes with Django REST framework](https://medium.com/swlh/build-your-first-rest-api-with-django-rest-framework-e394e39a482c)
 
-1. Install Python3
+  - [Data Flair](https://data-flair.training/blogs/install-django/)
 
-2. Install Git Bash
+#### Environment Setup
+
+1. Install [Python3](https://www.python.org/downloads/)
+
+2. Install [Git Bash](https://git-scm.com/downloads)
 
 3. Update pip (a good habit to have)
 
@@ -82,7 +92,7 @@ Improved Database Structure
 
 4. Setup virtual environment
 
-  - command: python -m venv {virtual environment name}
+  4.1. command: python -m venv {virtual environment name}
 
   <code>python -m venv venv</code>
 
@@ -92,29 +102,59 @@ Improved Database Structure
 
   - (venv) will appear on the command line to show you have activated the virtual environment
 
-6. Install Django
+6. Install packages through [Python Package Index](https://pypi.org/)
 
-  <code>pip install Django</code>
+  6.1. install [Django](https://pypi.org/project/Django/)
+
+  <code>pip install django</code>
+
+  6.2. install [Django REST framework](https://pypi.org/project/djangorestframework/)
+
+  <code>pip install djangorestframework</code>
+
+  6.3. install [Django CORS Headers](https://pypi.org/project/django-cors-headers/)
+
+  <code>pip install django-cors-headers</code>
+
+  6.4. install [Django MySQL](https://pypi.org/project/django-mysql/)
+
+  <code>pip install django-mysql</code>
+
+  6.5. create list of installed packages
+  
+  <code>pip freeze > requirements.txt</code>
 
 7. Start Django project
 
-  - command: django-admin.py startproject {project name}
+  7.1 command: django-admin.py startproject {project name}
 
   <code>django-admin.py startproject backroom</code>
 
 8. Verify it works
 
-  - command: cd {project name}
+  8.1. command: cd {project name}
 
   <code>cd backroom</code>
 
+  8.2. run server 
+
   <code>python manage.py runserver</code>
 
-  - with Internet browser (e.g., Chrome)
+  8.3. with Internet browser (e.g., Chrome), go to URL:
 
-    - go to URL: http://127.0.0.1:8000/
+    <code>http://127.0.0.1:8000/</code>
 
-  - exit the server in Git Bash: Ctrl + C
+  8.4. exit the server in Git Bash: Ctrl + C
+
+9. Models
+
+  9.1. Create Django Model
+
+  <code>django-admin startapp 
+
+10. Views
+
+11. Templates
 
 
 ### Golang
