@@ -62,8 +62,9 @@ Improved Database Structure
     - used PhpMyAdmin to create database and structure, and populate data
 
   - [MYSQL Workbench](https://www.mysql.com/products/workbench/)
-    - used to create foreign keys and scripts
-    - not needed for the scripts
+    - used to create schema, foreign keys, scripts, etc.
+    - note: not needed creating the database and data...use phpmyadmin
+      - in fact, unable to run the sql scripts in MySQL Workbench due to PRMARY KEY duplicate error
 
 - Links:
 
