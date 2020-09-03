@@ -71,31 +71,43 @@ Improved Database Structure
 ## Git
 
 Git Reference: [Atlassian](https://www.atlassian.com/git/tutorials)
+
 Git Tutorials: [Git Immersion](https://gitimmersion.com/index.html)
 
 - configuration (also in .gitconfig)
   - add/view user name
+
     <code>git config --global user.name</code>
+
   - add/view user email
+
     <code>git config --global user.email</code>
 
 - cloning
+
   <code>git clone https://github.com/username/repository-name.git</code>
 
 - check status
+
   <code>git status</code>
 
 - staging changes
   - by filename
+
     <code>git add filename</code>
+
   - all changes
+
     <code>git add .</code>
 
 - commiting changes
+
   <code>git commit -m "message"</code>
 
 - uploading/pushing to repository
+
   <code>git push</code>
 
 - downloading/pulling from repository
+
   <code>git pull</code>
