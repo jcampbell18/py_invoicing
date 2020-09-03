@@ -29,11 +29,12 @@ Tools:
   - HTML/HTML5
   - CSS/CSS3
 - Back-End Development: 
+  - [Django](https://www.djangoproject.com/) with [Python3](https://www.python.org/)
   - [Golang](https://golang.org/)
-  - [Django](https://www.djangoproject.com/) with [Python](https://www.python.org/)
 - Database: [MariaDB](https://mariadb.org/)
 - Version Control: [Git](https://git-scm.com/)
 - Cloud: [AWS](https://aws.amazon.com/)
+- IDE: [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Step 1. Database
 
