@@ -74,6 +74,8 @@ Git Reference: [Atlassian](https://www.atlassian.com/git/tutorials)
 
 Git Tutorials: [Git Immersion](https://gitimmersion.com/index.html)
 
+### Common commands used
+
 - configuration (also in .gitconfig)
   - add/view user name
 
