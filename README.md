@@ -23,8 +23,14 @@ Today: After just graduating in August 2020 from Eastern Washington University (
 
 Tools:
 
-- Front-End Development: [ReactJS](http://reactjs.org/)
-- Back-End Development: [Golang](https://golang.org/) and/or [Django](https://www.djangoproject.com/)
+- Front-End Development: 
+  - [ReactJS](http://reactjs.org/)
+  - Javascript
+  - HTML/HTML5
+  - CSS/CSS3
+- Back-End Development: 
+  - [Golang](https://golang.org/)
+  - [Django](https://www.djangoproject.com/) with [Python](https://www.python.org/)
 - Database: [MariaDB](https://mariadb.org/)
 - Version Control: [Git](https://git-scm.com/)
 - Cloud: [AWS](https://aws.amazon.com/)
@@ -58,3 +64,4 @@ Improved Database Structure
   - [Populate Database with Data](https://github.com/jcampbell18/invoicing/blob/master/DatabaseScript/populateWithData.sql)
 
 ## Step 2. Create Back-End
+
