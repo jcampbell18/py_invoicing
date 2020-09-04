@@ -89,109 +89,133 @@ Improved Database Structure
 
 2. Install [Git Bash](https://git-scm.com/downloads)
 
-3. Update pip (a good habit to have)
+4. Install [Python Driver for MySQL (Connector/Python)](https://dev.mysql.com/downloads/connector/python/)
+
+5. Update pip (a good habit to have)
 
   <code>python -m pip install --upgrade pip</code>
 
-4. Setup virtual environment
+6. Setup virtual environment
 
-  4.1. command: python -m venv {virtual environment name}
+  6.1. command: python -m venv {virtual environment name}
 
   <code>python -m venv venv</code>
 
-5. Activate virtual environment
+7. Activate virtual environment
 
   <code>source venv/Scripts/activate</code>
 
   - (venv) will appear on the command line to show you have activated the virtual environment
 
-6. Install packages through [Python Package Index](https://pypi.org/)
+8. Install packages through [Python Package Index](https://pypi.org/)
 
-  6.1. install [Django](https://pypi.org/project/Django/)
+  8.1. install [Django](https://pypi.org/project/Django/)
 
-  <code>pip install django</code>
+    <code>pip install django</code>
 
-  6.2. install [Django REST framework](https://pypi.org/project/djangorestframework/)
+  8.2. install [Django REST framework](https://pypi.org/project/djangorestframework/)
 
-  <code>pip install djangorestframework</code>
+    <code>pip install djangorestframework</code>
 
-  6.3. install [Django CORS Headers](https://pypi.org/project/django-cors-headers/)
+  8.3. install [Django CORS Headers](https://pypi.org/project/django-cors-headers/)
 
-  <code>pip install django-cors-headers</code>
+    <code>pip install django-cors-headers</code>
 
-  6.4. install [Django MySQL](https://pypi.org/project/django-mysql/)
+  8.4. install [Django MySQL](https://pypi.org/project/django-mysql/)
 
-  <code>pip install django-mysql</code>
+    <code>pip install django-mysql</code>
 
-  6.5. create list of installed packages
+  8.5. install python dev tools
+
+    <code>pip install python-dev-tools</code>
+
+    8.5.1 installation with VS Code
+
+      - In VS Code, open settings (F1 key, then type “Open Settings (JSON)”, then enter)
+
+      - Add in the opened JSON file:
+
+        <code>
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.linting.flake8Path": "flake8",
+        "python.formatting.provider": "black",
+        "python.formatting.blackPath": "whataformatter",
+        "python.formatting.blackArgs": [],
+        </code>
+
+  8.6. create list of installed packages
   
-  <code>pip freeze > requirements.txt</code>
+    <code>pip freeze > requirements.txt</code>
 
-7. Start Django project
+  
 
-  7.1. command: django-admin.py startproject {project name}
+9. Start Django project
 
-  <code>django-admin.py startproject backroom</code>
+  9.1. command: django-admin.py startproject {project name}
 
-  7.2. command: cd {project name}
+    <code>django-admin.py startproject backroom</code>
 
-  <code>cd backroom</code>
+  9.2. command: cd {project name}
 
-  7.3. edit settings.py in {project name}
+    <code>cd backroom</code>
 
-    7.3.1. in 'INSTALLED_APPS', add lines (at end):
+  9.3. edit settings.py in {project name}
+
+    9.3.1. in 'INSTALLED_APPS', add lines (at end):
 
       <code>'rest_framework',</code>
       <code>'corsheaders',</code>
       <code>'django_mysql', </code>
 
-    7.3.2. in 'MIDDLEWARE', add line (at top):
+    9.3.2. in 'MIDDLEWARE', add line (at top):
 
       <code>'corsheaders.middleware.CorsMiddleware',</code>
 
-8. Verify it works
+10. Verify it works
 
-  8.1. command: cd {project name}
+  10.1. command: cd {project name}
 
-  <code>cd backroom</code>
+    <code>cd backroom</code>
 
-  8.2. run server 
+  10.2. run server 
 
-  <code>python manage.py runserver</code>
+    <code>python manage.py runserver</code>
 
-  8.3. with Internet browser (e.g., Chrome), go to URL:
+  10.3. with Internet browser (e.g., Chrome), go to URL:
 
     <code>http://127.0.0.1:8000/</code>
 
-  8.4. exit the server in Git Bash: Ctrl + C
+  10.4. exit the server in Git Bash: Ctrl + C
 
-9. Django App
+11. Django App
 
-  9.1. Migrations
+  11.1. Migrations
 
-    9.1.1. command for integrating the project (checks for new additions)
+    11.1.1. command for integrating the project (checks for new additions)
 
       <code>python manage.py makemigrations</code>
 
-    9.12. command for adding the new additions
+    11.1.2. command for adding the new additions
 
       <code>python manage.py migrate</code>
 
-  9.3. Django Model
+  11.3. Django Model
 
-    9.3.1. command: django-admin startapp {app name}
+    11.3.1. command: django-admin startapp {app name}
 
       <code>django-admin startapp access_levels</code>
 
-    9.3.2. edit settings.py in {project name}
+    11.3.2. edit settings.py in {project name}
 
-      9.3.2.1. in 'INSTALLED_APPS', add lines (at end):
+      11.3.2.1. in 'INSTALLED_APPS', add lines (at end):
 
-      <code># Apps</code>
+        <code>
+        # Apps
+        'access_levels',
+        </code>
 
-      <code>'access_levels',</code>
-
-    9.3.3. edit models.py in {app name}
+    11.3.3. edit models.py in {app name}
 
       <code>
       from django.db import models
@@ -201,21 +225,21 @@ Improved Database Structure
           description = models.TextField(max_length = 250)
       </code>
 
-    9.3.4. command for integrating the project (checks for new additions)
+    11.3.4. command for integrating the project (checks for new additions)
 
       <code>python manage.py makemigrations</code>
 
-    9.3.5. command for adding the new additions
+    11.3.5. command for adding the new additions
 
       <code>python manage.py migrate</code>
 
-  9.x. create super user account
+  11.x. create super user account
 
-  <code>python manage.py createsuperuser</code> 
+    <code>python manage.py createsuperuser</code> 
 
-10. Views
+12. Views
 
-11. Templates
+13. Templates
 
 
 ### Golang
