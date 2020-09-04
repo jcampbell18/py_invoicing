@@ -121,15 +121,41 @@ Improved Database Structure
 
     <code>pip install django-cors-headers</code>
 
-  8.4. install [Django MySQL](https://pypi.org/project/django-mysql/)
+  8.4. MySQL Client
+  
+    8.4.1. Link: [MySQL Client](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient)
+
+    8.4.2. Before downloading the .whl file, you must know the Python version
+
+      8.4.2.1. Python version
+
+        <code>python --version</code>
+
+      8.4.2.2. 32-bit or 64-bit version of Python on system
+
+    8.4.3. download correct version (if python is version 3.8, then find the cp38)
+
+      8.4.3.1. I am using Windows 10 64-bit Operating System with Python 3.8.5 32-bit
+
+        - downloading: mysqlclient-1.4.6-cp38-cp38-win32.whl
+
+    8.4.4. place file in project directing (e.g., invoicing)
+
+    8.4.5. install using pip
+
+      8.4.5.1. my command: pip install { filename }
+
+        <code>pip install mysqlclient-1.4.6-cp38-cp38-win32.whl</code>
+
+  8.6. install django-mysql
 
     <code>pip install django-mysql</code>
 
-  8.5. install python dev tools
+  8.7. install python dev tools
 
     <code>pip install python-dev-tools</code>
 
-    8.5.1 installation with VS Code
+    8.7.1 installation with VS Code
 
       - In VS Code, open settings (F1 key, then type “Open Settings (JSON)”, then enter)
 
@@ -144,12 +170,10 @@ Improved Database Structure
         "python.formatting.blackArgs": [],
         </code>
 
-  8.6. create list of installed packages
+  8.8. create list of installed packages
   
     <code>pip freeze > requirements.txt</code>
-
   
-
 9. Start Django project
 
   9.1. command: django-admin.py startproject {project name}
@@ -236,6 +260,20 @@ Improved Database Structure
   11.x. create super user account
 
     <code>python manage.py createsuperuser</code> 
+
+  12. Edit settings.py
+
+    12.1. replace database name from 'db.sqlite3' to {database name}:
+
+      12.1.1. 'NAME': BASE_DIR / '{database name}.sqlite3',
+
+      <code>'NAME': BASE_DIR / 'invoicing.sqlite3',</code>
+
+  13. Execute migrate and runserver
+
+    <code>python manage.py migrate</code>
+
+    <code>python manage.py runserver</code>
 
 12. Views
 
