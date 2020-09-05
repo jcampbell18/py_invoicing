@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_mysql',
     # Apps
-    'access_levels',
+    'invoicing',
+
 ]
 
 MIDDLEWARE = [
@@ -85,9 +86,10 @@ DATABASES = {
         'NAME': 'invoicing',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
         'OPTIONS': {
+            'charset': 'utf8mb4',
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }

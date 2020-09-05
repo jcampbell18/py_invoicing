@@ -188,9 +188,11 @@ Improved Database Structure
 
     9.3.1. in 'INSTALLED_APPS', add lines (at end):
 
-      <code>'rest_framework',</code>
-      <code>'corsheaders',</code>
-      <code>'django_mysql', </code>
+      <code>
+      'rest_framework',
+      'corsheaders',
+      'django_mysql',
+      </code>
 
     9.3.2. in 'MIDDLEWARE', add line (at top):
 
@@ -263,17 +265,43 @@ Improved Database Structure
 
   12. Edit settings.py
 
-    12.1. replace database name from 'db.sqlite3' to {database name}:
+    12.1. Under DATABASES section:
 
-      12.1.1. 'NAME': BASE_DIR / '{database name}.sqlite3',
+      12.1.1. replace with,
 
-      <code>'NAME': BASE_DIR / 'invoicing.sqlite3',</code>
+        <code>
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'invoicing',
+                'USER': 'root',
+                'PASSWORD': '',
+                'HOST': 'localhost',
+                'PORT': '3306',
+                'OPTIONS': {
+                    'charset': 'utf8mb4',
+                    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+                }
+            }
+        }
+        </code>
 
   13. Execute migrate and runserver
 
     <code>python manage.py migrate</code>
 
     <code>python manage.py runserver</code>
+
+    13.1. To verify the database is connected:
+
+      13.1.1. Start XAMPP, and select MySQL config button
+
+      13.1.2. in PHPMyAdmin, select the database, and you should see tables like:
+
+        - auth_group
+        - auth_group_permissions
+        - django_admin_log
+        - etc....
 
 12. Views
 
