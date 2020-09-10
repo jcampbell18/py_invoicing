@@ -28,12 +28,14 @@ Tools:
   - Javascript
   - HTML/HTML5
   - CSS/CSS3
-- Back-End Development: 
+- Back-End Development (options): 
   - [Django](https://www.djangoproject.com/) with [Python3](https://www.python.org/)
   - [Golang](https://golang.org/)
+  - [Flask](http://flask.pocoo.org/) with [Python](https://www.python.org/) 
 - Database: [MariaDB](https://mariadb.org/)
 - Version Control: [Git](https://git-scm.com/)
-- Cloud: [AWS](https://aws.amazon.com/)
+- Container (optional): [Docker](https://www.docker.com/)
+- Cloud (optional): [AWS](https://aws.amazon.com/)
 - IDE: [Visual Studio Code](https://code.visualstudio.com/)
 
 ## 
@@ -52,7 +54,7 @@ Original Database Structure
 ![old database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_original.jpg)
 
 Improved Database Structure
-![new database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_v1-1.jpg)
+![new database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_v1-2.jpg)
 
 #### Script for new Database design
 

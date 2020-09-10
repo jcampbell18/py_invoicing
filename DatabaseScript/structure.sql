@@ -77,7 +77,7 @@ CREATE TABLE `expenses` (
   `tax` decimal(12,5) NOT NULL,
   `total` decimal(12,5) NOT NULL,
   `receipt_reference` varchar(100) NOT NULL,
-  `reciept_image` mediumtext NOT NULL
+  `receipt_image` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `expense_categories` (
@@ -89,15 +89,15 @@ CREATE TABLE `expense_categories` (
 CREATE TABLE `invoices` (
   `invoice_id` int(10) NOT NULL,
   `company_id` int(10) NOT NULL,
-  `sku_id` int(10) NOT NULL,
   `project_site_id` int(10) NOT NULL,
+  `sku_id` int(10) NOT NULL,
   `bid_id` int(10) NULL,
   `term_id` int(10) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `description` mediumtext NOT NULL,
   `amount` decimal(8,2) NOT NULL,
-  `reciepts` tinyint(1) NOT NULL,
+  `receipts` tinyint(1) NOT NULL,
   `images` tinyint(1) NOT NULL,
   `image_links` mediumtext NOT NULL,
   `mileage_id` int(10) NOT NULL,
