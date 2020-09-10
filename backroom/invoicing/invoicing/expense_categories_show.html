@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Expense_Categories_Show</title>
+    </head>
+    <body>
+        <h1>The Expense Categories</h1>
+        <div>
+            <ul>
+                {% for cat in expense_category %}
+                <li>
+                    <h2>Name {{ cat.name }}</h2>
+                    <p> Description {{ cat.description}}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
