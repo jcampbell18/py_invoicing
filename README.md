@@ -52,7 +52,7 @@ Original Database Structure
 ![old database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_original.jpg)
 
 Improved Database Structure
-![new database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_v1-1.jpg)
+![new database design](https://github.com/jcampbell18/invoicing/blob/master/UML/DatabaseDiagram_v1-2.jpg)
 
 #### Script for new Database design
 
