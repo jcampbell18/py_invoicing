@@ -1,0 +1,218 @@
+/**** VARIABLES (Color Palette) ****/
+:root {
+    --primary-color: #c9ccd1;
+    --secondary-color: #000000;
+    --tertiary-color: #bbbbbb;
+    --quaternary-color: #e6ad18;
+}
+
+
+/***** HTML *****/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    width: 100%;
+    background: var(--primary-color);
+}
+
+h1,
+h2 {
+    font-family: 'Roboto-Light';
+    src: url('/fonts/Roboto-Light.ttf');
+}
+
+h3,
+h4,
+h5,
+p {
+    font-family: 'Roboto-Regular';
+    src: url('/fonts/Roboto-Regular.ttf');
+}
+
+h1 {
+    font-size: 6.022em;
+    letter-spacing: -0.009em;
+}
+
+h2 {
+    font-size: 3.764em;
+    letter-spacing: 0.031em;
+}
+
+h3 {
+    font-size: 3.011em;
+    letter-spacing: 0.0em;
+}
+
+h4 {
+    font-size: 2.133em;
+    letter-spacing: 0.016em;
+}
+
+h5 {
+    font-size: 1.506em;
+    letter-spacing: 0.0em;
+}
+
+h6 {
+    font-family: 'Roboto-Medium';
+    src: url('/fonts/Roboto-Medium.ttf');
+    font-size: 1.255em;
+    letter-spacing: 0.010em;
+}
+
+p {
+    font-size: 1.0em;
+    letter-spacing: -0.094em;
+}
+
+a,
+a:link,
+a:visited,
+a:hover {
+    text-decoration: none;
+    color: var(--quaternary-color);
+}
+
+/***** HEADER *****/
+header {
+    background: var(--secondary-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+header section.title_area {
+    grid-column: 1;
+    color: var(--primary-color);
+
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+}
+
+header section.title_area h1 {
+    grid-row: 1;
+}
+
+header section.title_area h4 {
+    grid-row: 2;
+    justify-self: end;
+}
+
+header section.login_area {
+    grid-column: 3;
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+header section.login_area h5 {
+    grid-row: 1;
+    grid-column: 1;
+    color: grey;
+}
+
+header section.login_area h6.access_level {
+    grid-row: 2;
+    grid-column: 1;
+    color: gray;
+}
+
+header section.login_area h6.timestamp {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+header section.login_area img {
+    grid-row: 1 / span 3;
+    grid-column: 2;
+    width: 100px;
+    height: auto;
+}
+
+.white {
+    color: white;
+}
+
+.orange {
+    color: var(--quaternary-color);
+}
+
+/***** NAV *****/
+nav {
+    background: var(--secondary-color);
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 1em 0em;
+}
+
+nav ol {
+    width: 80%;
+    background: var(--tertiary-color);
+    
+    /* display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    align-items: center; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ol li {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: start;
+    align-items: center;
+}
+
+nav ol li img {
+    grid-column: 1;
+    width: 75%;
+}
+
+nav ol li p {
+    grid-column: 2;
+}
+
+/***** ASIDE (SUBNAV) *****/
+
+aside {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 1em 0em;
+}
+
+aside ol {
+    list-style: none;
+    width: 90%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+aside ol li {
+    align-self: center;
+}
+
+aside ol li p {
+    text-align: center;
+}
+
+
+/***** MAIN *****/
+main {}
+
+/***** FOOTER *****/
+footer {}

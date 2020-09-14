@@ -89,8 +89,8 @@ CREATE TABLE `expense_categories` (
 CREATE TABLE `invoices` (
   `invoice_id` int(10) NOT NULL,
   `company_id` int(10) NOT NULL,
-  `project_site_id` int(10) NOT NULL,
   `sku_id` int(10) NOT NULL,
+  `project_site_id` int(10) NOT NULL,
   `bid_id` int(10) NULL,
   `term_id` int(10) NOT NULL,
   `start_date` date NOT NULL,
