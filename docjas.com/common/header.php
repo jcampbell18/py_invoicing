@@ -23,7 +23,7 @@
   })();
 
 </script>
-</head>
+</head> 
 
 <body style="background: #c9ccd1; color: #000000; min-height: 100%;">
 

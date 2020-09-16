@@ -1,4 +1,4 @@
-<?
+<? 
 	$current_page = basename($_SERVER[PHP_SELF]);
 /* AUTHENTICATION */
     include("common/author.php");

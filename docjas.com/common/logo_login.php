@@ -1,4 +1,4 @@
-<tr>
+<tr> 
         <td style="width: 1020px; height: 126px; margin: 0px; padding: 0px; border: 0px;">
             <table style="margin: 0px; border: 0px; padding: 0px; width: 1020px; height: 126px; border-collapse: collapse;">
                 <tr>
