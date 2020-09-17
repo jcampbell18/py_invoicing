@@ -1,8 +1,7 @@
 import React from 'react'
-import img_checkbox_true from '../img/icons/512x512/checkbox_unmarked.png'
-import img_checkbox_false from '../img/icons/512x512/checkbox_marked.png'
-import img_view from '../img/icons/512x512/view.png'
-import img_print from '../img/icons/512x512/print.png'
+import img_checkmark from '../img/icons/32x32/checkmark.png'
+import img_view from '../img/icons/32x32/view.png'
+import img_print from '../img/icons/32x32/print.png'
 
 class OutstandingInvoices extends React.Component {
     render() {
@@ -52,7 +51,7 @@ class OutstandingInvoices extends React.Component {
                         <p>$400.00</p>
                     </li>
                     <li>
-                        <img src={img_checkbox_false} alt="Completed" title="Completed"/>
+                        <img src={img_checkmark} alt="Completed" title="Completed"/>
                     </li>
                     <li>
                         <a href="/#">
@@ -82,7 +81,7 @@ class OutstandingInvoices extends React.Component {
                         <p>$400.00</p>
                     </li>
                     <li>
-                        <img src={img_checkbox_true} alt="Completed" title="Completed"/>
+                        <img src={img_checkmark} alt="Completed" title="Completed"/>
                     </li>
                     <li>
                         <a href="/#">
@@ -112,7 +111,7 @@ class OutstandingInvoices extends React.Component {
                         <p>$400.00</p>
                     </li>
                     <li>
-                        <img src={img_checkbox_false} alt="Completed" title="Completed"/>
+                        <img src={img_checkmark} alt="Completed" title="Completed"/>
                     </li>
                     <li>
                         <a href="/#">
@@ -142,7 +141,7 @@ class OutstandingInvoices extends React.Component {
                         <p>$400.00</p>
                     </li>
                     <li>
-                        <img src={img_checkbox_true} alt="Completed" title="Completed"/>
+                        <p>&nbsp;</p>
                     </li>
                     <li>
                         <a href="/#">

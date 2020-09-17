@@ -360,3 +360,35 @@ Git Tutorials: [Git Immersion](https://gitimmersion.com/index.html)
 - downloading/pulling from repository
 
   <code>git pull</code>
+
+## Create Front-End
+
+### HTML/HTML5
+
+- References:
+
+  - [MDN Web Docs for HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+### CSS/CSS3 (attempting to make responsive design to avoid using @media)
+
+- References:
+
+  - [MDN Web Docs for CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+### ReactJS
+
+- References:
+
+  - [ReactJS Docs](https://reactjs.org/docs/getting-started.html)
+
+### Design
+
+- References:
+
+  - [Modular Scale](https://www.modularscale.com/) :  used to size h1-h6, p tag elements
+
+  - [Material.IO](https://material.io/) : used for typography recommendations
+
+  - [Google Fonts](https://fonts.google.com/) : used for fonts
+
+  - Icons made by [Becris](https://www.flaticon.com/authors/becris) from [FlatIcon.com](https://www.flaticon.com/)

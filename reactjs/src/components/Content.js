@@ -6,7 +6,7 @@ class Content extends React.Component {
     render() {
         return (
             <main>
-                <p>Nothing here yet</p>
+                <p>Nothing here in Content yet</p>
             </main>
         );
     }    

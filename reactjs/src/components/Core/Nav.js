@@ -1,10 +1,10 @@
 import React from 'react'
 import './Nav.css'
-import img_dashboard from '../../img/icons/512x512/dashboard.png'
-import img_content from '../../img/icons/512x512/content.png'
-import img_users from '../../img/icons/512x512/user.png'
-import img_settings from '../../img/icons/512x512/settings.png'
-import img_logout from '../../img/icons/512x512/logout.png'
+import img_dashboard from '../../img/icons/32x32/dashboard.png'
+import img_content from '../../img/icons/32x32/content.png'
+import img_users from '../../img/icons/32x32/user.png'
+import img_settings from '../../img/icons/32x32/settings.png'
+import img_logout from '../../img/icons/32x32/logout.png'
 
 class Nav extends React.Component {
 

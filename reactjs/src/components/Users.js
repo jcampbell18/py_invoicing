@@ -6,7 +6,7 @@ class Users extends React.Component {
     render() {
         return (
             <main>
-                <p>Nothing here yet</p>
+                <p>Nothing here in Users yet</p>
             </main>
         );
     }    
