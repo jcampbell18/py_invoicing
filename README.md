@@ -24,10 +24,8 @@ Current: After just graduating in August 2020 from Eastern Washington University
 Tools:
 
 - Front-End Development: 
+  - HTML, CSS, Javascript
   - [ReactJS](http://reactjs.org/)
-  - Javascript
-  - HTML/HTML5
-  - CSS/CSS3
 - Back-End Development (options): 
   - [Django](https://www.djangoproject.com/) with [Python3](https://www.python.org/)
   - [Golang](https://golang.org/)

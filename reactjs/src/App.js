@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './components/Core/Header'
+import SubNav from './components/Core/SubNav'
+import Dashboard from './components/Dashboard'
+import Footer from './components/Core/Footer'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+    state = {
+        nav: 'Dashboard'
+    }
+
+    onNavSelection = (nav) => {
+        this.setState (
+            {
+                nav
+            }
+        );
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <Header
+                    onNavSelection={this.onNavSelection} 
+                />
+                <SubNav />
+                <Dashboard />
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default App;
