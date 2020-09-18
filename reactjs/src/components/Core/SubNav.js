@@ -20,48 +20,7 @@ class SubNav extends React.Component {
 
     getSubNav(nav) {
         switch(nav) {
-            case "Content":
-                return (
-                    <ol>
-                        <li>
-                            <a href="/#" onClick="">
-                                <img src={img_changelog} alt="Changelog" title="Changelog"/>
-                                <h6>Changelog</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick="">
-                                <img src={img_expenses} alt="Expenses" title="Expenses"/>
-                                <h6>Expenses</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick="">
-                                <img src={img_expense_categories} alt="Expense Categories" title="Expense Categories"/>
-                                <h6>Expense Categories</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick="">
-                                <img src={img_vendors} alt="Vendors" title="Vendors"/>
-                                <h6>Vendors</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick="">
-                                <img src={img_vehicles} alt="Vehicles" title="Vehicles"/>
-                                <h6>Vehicles</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick="">
-                                <img src={img_reports} alt="Reports" title="Reports"/>
-                                <h6>Reports</h6>
-                            </a>
-                        </li>
-                    </ol>
-                );
-            default:
+            case "Dashboard":
                 return (
                     <ol>
                         <li>
@@ -107,6 +66,51 @@ class SubNav extends React.Component {
                             </a>
                         </li>
                     </ol>
+                );
+            case "Content":
+                return (
+                    <ol>
+                        <li>
+                            <a href="/#" onClick="">
+                                <img src={img_changelog} alt="Changelog" title="Changelog"/>
+                                <h6>Changelog</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick="">
+                                <img src={img_expenses} alt="Expenses" title="Expenses"/>
+                                <h6>Expenses</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick="">
+                                <img src={img_expense_categories} alt="Expense Categories" title="Expense Categories"/>
+                                <h6>Expense Categories</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick="">
+                                <img src={img_vendors} alt="Vendors" title="Vendors"/>
+                                <h6>Vendors</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick="">
+                                <img src={img_vehicles} alt="Vehicles" title="Vehicles"/>
+                                <h6>Vehicles</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick="">
+                                <img src={img_reports} alt="Reports" title="Reports"/>
+                                <h6>Reports</h6>
+                            </a>
+                        </li>
+                    </ol>
+                );
+            default:
+                return (
+                    
                 );
         }
     }

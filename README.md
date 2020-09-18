@@ -29,7 +29,7 @@ Tools:
 - Back-End Development (options): 
   - [Django](https://www.djangoproject.com/) with [Python3](https://www.python.org/)
   - [Golang](https://golang.org/)
-  - [Flask](http://flask.pocoo.org/) with [Python](https://www.python.org/) 
+  - [Flask](http://flask.pocoo.org/) with [Python3](https://www.python.org/) 
 - Database: [MariaDB](https://mariadb.org/)
 - Version Control: [Git](https://git-scm.com/)
 - Container (optional): [Docker](https://www.docker.com/)
