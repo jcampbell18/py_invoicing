@@ -16,7 +16,7 @@ import img_vendors from '../../img/icons/64x64/vendors.png'
 import img_vehicles from '../../img/icons/64x64/vehicles.png'
 import img_reports from '../../img/icons/64x64/reports.png'
 
-class SubNav extends React.Component {
+class SubNav extends React.Component { 
 
     getSubNav(nav) {
         switch(nav) {
