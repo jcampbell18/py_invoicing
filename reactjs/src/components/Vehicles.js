@@ -1,15 +1,24 @@
 import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
-class Terms extends React.Component {
-    render() {
+class Vehicles extends React.Component {
+    render() { 
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Terms</h6>
+                    <h6>Vehicles</h6>
                     <ul>
                         <li>
-                            <p className="heading">Name</p>
+                            <p className="heading">Year</p>
+                        </li>
+                        <li>
+                            <p className="heading">Make</p>
+                        </li>
+                        <li>
+                            <p className="heading">Model</p>
+                        </li>
+                        <li>
+                            <p className="heading">SubModel</p>
                         </li>
                         <li>
                             <p className="heading">Description</p>
@@ -20,10 +29,19 @@ class Terms extends React.Component {
                     </ul>
                     <ul className="ul-lines">
                         <li>
-                            <p>Due on Receipt</p>
+                            <p>1994</p>
                         </li>
                         <li>
-                            <p>&nbsp;</p>
+                            <p>Subaru</p>
+                        </li>
+                        <li>
+                            <p>Legacy</p>
+                        </li>
+                        <li>
+                            <p>L</p>
+                        </li>
+                        <li>
+                            <p>2.2L 2212 CC H4</p>
                         </li>
                         <li>
                             <a href="/#">
@@ -37,4 +55,4 @@ class Terms extends React.Component {
     }    
 }
 
-export default Terms;
+export default Vehicles;

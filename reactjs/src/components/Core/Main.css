@@ -32,6 +32,9 @@ main li p {
     padding: 0.4em;
 }
 
+/*** SECTION: Reports ***/
+/* main section.reports */
+
 /*** SECTION: Monthly Stats ***/
 main section.monthly-stats h6 {
     grid-row: 1;

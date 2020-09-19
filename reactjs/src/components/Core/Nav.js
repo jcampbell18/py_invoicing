@@ -10,7 +10,8 @@ class Nav extends React.Component {
 
     onMenuSelection = (e) => {
         e.preventDefault();
-        this.props.onNavSelection(e.target.innerHTML);
+        const sel = e.currentTarget.querySelector('h6');
+        this.props.onNavSelection(sel.innerHTML);
     }
 
     render() {
@@ -18,7 +19,7 @@ class Nav extends React.Component {
             <nav>
                 <ol>
                     <li>
-                        <a href="/#" onClick={this.onMenuSelection} data="Dashboard">
+                        <a href="/#" onClick={this.onMenuSelection}>
                             <img src={img_dashboard} alt="Dashboard" title="Dashboard"/>
                             <h6>Dashboard</h6>
                         </a>

@@ -1,27 +1,27 @@
 import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
-class Clients extends React.Component {
-    render() {
+class Changelog extends React.Component {
+    render() { 
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Clients</h6>
+                    <h6>Changelog</h6>
                     <ul>
                         <li>
-                            <p className="heading">Business Name</p>
+                            <p className="heading">Address</p>
                         </li>
                         <li>
-                            <p className="heading">Contact Name</p>
+                            <p className="heading">City</p>
                         </li>
                         <li>
-                            <p className="heading">Address, City, State &amp; Zipcode</p>
+                            <p className="heading">State</p>
                         </li>
                         <li>
-                            <p className="heading">Phone</p>
+                            <p className="heading">Zipcode</p>
                         </li>
                         <li>
-                            <p className="heading">Email</p>
+                            <p className="heading">Box Code</p>
                         </li>
                         <li>
                             <p className="heading">View</p>
@@ -29,19 +29,19 @@ class Clients extends React.Component {
                     </ul>
                     <ul className="ul-lines">
                         <li>
-                            <p>Keller Williams</p>
+                            <p>36124 N Milan Elk Rd</p>
                         </li>
                         <li>
-                            <p>Doc Nicolson</p>
+                            <p>Chattoroy</p>
                         </li>
                         <li>
-                            <p>802 N Washington St, Spokane, WA 99201</p>
+                            <p>WA</p>
                         </li>
                         <li>
-                            <p>(509) 991-4085</p>
+                            <p>99003</p>
                         </li>
                         <li>
-                            <p>doc@fivestarspokane.com</p>
+                            <p>2610</p>
                         </li>
                         <li>
                             <a href="/#">
@@ -55,4 +55,4 @@ class Clients extends React.Component {
     }    
 }
 
-export default Clients;
+export default Changelog;

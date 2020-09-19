@@ -1,18 +1,18 @@
 import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
-class Terms extends React.Component {
-    render() {
+class Vendors extends React.Component {
+    render() { 
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Terms</h6>
+                    <h6>Vendors</h6>
                     <ul>
                         <li>
-                            <p className="heading">Name</p>
+                            <p className="heading">Business Name</p>
                         </li>
                         <li>
-                            <p className="heading">Description</p>
+                            <p className="heading">Address, City, State &amp; Zipcode</p>
                         </li>
                         <li>
                             <p className="heading">View</p>
@@ -20,10 +20,10 @@ class Terms extends React.Component {
                     </ul>
                     <ul className="ul-lines">
                         <li>
-                            <p>Due on Receipt</p>
+                            <p>Home Depot - Valley</p>
                         </li>
                         <li>
-                            <p>&nbsp;</p>
+                            <p>5617 E Sprague Ave., Spokane Valley, WA 99212</p>
                         </li>
                         <li>
                             <a href="/#">
@@ -37,4 +37,4 @@ class Terms extends React.Component {
     }    
 }
 
-export default Terms;
+export default Vendors;

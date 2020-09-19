@@ -1,12 +1,12 @@
 import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
-class Sku extends React.Component {
-    render() {
+class ExpenseCategories extends React.Component {
+    render() { 
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Sku</h6>
+                    <h6>Expense Categories</h6>
                     <ul>
                         <li>
                             <p className="heading">Name</p>
@@ -20,23 +20,10 @@ class Sku extends React.Component {
                     </ul>
                     <ul className="ul-lines">
                         <li>
-                            <p>Winterize</p>
+                            <p>Vehicle Gas</p>
                         </li>
                         <li>
-                            <p>Winterize</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Snow Removal</p>
-                        </li>
-                        <li>
-                            <p>	Shovel Walkway, Driveway, Paths</p>
+                            <p>Vehicle Gas</p>
                         </li>
                         <li>
                             <a href="/#">
@@ -46,23 +33,10 @@ class Sku extends React.Component {
                     </ul>
                     <ul className="ul-lines">
                         <li>
-                            <p>Lock Replacement</p>
+                            <p>Building Materials</p>
                         </li>
                         <li>
-                            <p>Changeout locks and associated hardware</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Trash Out</p>
-                        </li>
-                        <li>
-                            <p>Remove all specified debris/junk/garbage from property</p>
+                            <p>Building Materials</p>
                         </li>
                         <li>
                             <a href="/#">
@@ -76,4 +50,4 @@ class Sku extends React.Component {
     }    
 }
 
-export default Sku;
+export default ExpenseCategories;

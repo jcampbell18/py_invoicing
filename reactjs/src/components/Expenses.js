@@ -1,67 +1,57 @@
 import React from 'react'
-import img_checkmark from '../img/icons/32x32/checkmark.png'
 import img_view from '../img/icons/32x32/view.png'
-import img_print from '../img/icons/32x32/print.png'
 
-class Bids extends React.Component {
-    render() {
+class Expenses extends React.Component {
+    render() { 
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Bids</h6>
+                    <h6>Expenses</h6>
                     <ul>
-                        <li>
-                            <p className="heading">Bid #</p>
-                        </li>
                         <li>
                             <p className="heading">Date</p>
                         </li>
                         <li>
-                            <p className="heading">Project Site</p>
+                            <p className="heading">Company</p>
                         </li>
                         <li>
-                            <p className="heading">Work Performed</p>
+                            <p className="heading">Description</p>
                         </li>
                         <li>
-                            <p className="heading">Amount</p>
+                            <p className="heading">Expense Category</p>
                         </li>
                         <li>
-                            <p className="heading">Approved?</p>
+                            <p className="heading">Vehicle or Invoice</p>
+                        </li>
+                        <li>
+                            <p className="heading">Quantity @ Amount</p>
                         </li>
                         <li>
                             <p className="heading">View</p>
                         </li>
-                        <li>
-                            <p className="heading">Print</p>
-                        </li>
                     </ul>
                     <ul className="ul-lines">
                         <li>
-                            <p>#0001</p>
+                            <p>01-03-2011</p>
                         </li>
                         <li>
-                            <p>10-23-2010</p>
+                            <p>Shell - 395</p>
                         </li>
                         <li>
-                            <p>	24515 S Pine Springs Rd, Cheney, WA 99004</p>
+                            <p>Gas</p>
                         </li>
                         <li>
-                            <p>Repair</p>
+                            <p>Vehicle Gas</p>
                         </li>
                         <li>
-                            <p>$800.00</p>
+                            <p>1994 Subaru Legacy</p>
                         </li>
                         <li>
-                            <img src={img_checkmark} alt="Approved" title="Approved"/>
+                            <p>1 @ $33.73</p>
                         </li>
                         <li>
                             <a href="/#">
                                 <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_print} alt="Print" title="Print"/>
                             </a>
                         </li>
                     </ul>
@@ -71,4 +61,4 @@ class Bids extends React.Component {
     }    
 }
 
-export default Bids;
+export default Expenses;
