@@ -34,6 +34,7 @@ class OutstandingInvoices extends React.Component {
                         <p className="heading">Print</p>
                     </li>
                 </ul>
+                
                 <ul className="ul-lines">
                     <li>
                         <p>#0092</p>
@@ -51,97 +52,7 @@ class OutstandingInvoices extends React.Component {
                         <p>$400.00</p>
                     </li>
                     <li>
-                        <img src={img_checkmark} alt="Completed" title="Completed"/>
-                    </li>
-                    <li>
-                        <a href="/#">
-                            <img src={img_view} alt="View" title="View"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/#">
-                            <img src={img_print} alt="Print" title="Print"/>
-                        </a>
-                    </li>
-                </ul>
-                <ul className="ul-lines">
-                    <li>
-                        <p>#0092</p>
-                    </li>
-                    <li>
-                        <p>04/27/2013</p>
-                    </li>
-                    <li>
-                        <p>1703 E 4th Ave, Spokane, WA 99202</p>
-                    </li>
-                    <li>
-                        <p>Short-term Loan</p>
-                    </li>
-                    <li>
-                        <p>$400.00</p>
-                    </li>
-                    <li>
-                        <img src={img_checkmark} alt="Completed" title="Completed"/>
-                    </li>
-                    <li>
-                        <a href="/#">
-                            <img src={img_view} alt="View" title="View"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/#">
-                            <img src={img_print} alt="Print" title="Print"/>
-                        </a>
-                    </li>
-                </ul>
-                <ul className="ul-lines">
-                    <li>
-                        <p>#0092</p>
-                    </li>
-                    <li>
-                        <p>04/27/2013</p>
-                    </li>
-                    <li>
-                        <p>1703 E 4th Ave, Spokane, WA 99202</p>
-                    </li>
-                    <li>
-                        <p>Short-term Loan</p>
-                    </li>
-                    <li>
-                        <p>$400.00</p>
-                    </li>
-                    <li>
-                        <img src={img_checkmark} alt="Completed" title="Completed"/>
-                    </li>
-                    <li>
-                        <a href="/#">
-                            <img src={img_view} alt="View" title="View"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/#">
-                            <img src={img_print} alt="Print" title="Print"/>
-                        </a>
-                    </li>
-                </ul>
-                <ul className="ul-lines">
-                    <li>
-                        <p>#0092</p>
-                    </li>
-                    <li>
-                        <p>04/27/2013</p>
-                    </li>
-                    <li>
-                        <p>1703 E 4th Ave, Spokane, WA 99202</p>
-                    </li>
-                    <li>
-                        <p>Short-term Loan</p>
-                    </li>
-                    <li>
-                        <p>$400.00</p>
-                    </li>
-                    <li>
-                        <p>&nbsp;</p>
+                        <p><img src={img_checkmark} alt="Completed" title="Completed"/></p>
                     </li>
                     <li>
                         <a href="/#">

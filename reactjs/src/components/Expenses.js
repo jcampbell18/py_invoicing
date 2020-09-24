@@ -30,31 +30,35 @@ class Expenses extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>01-03-2011</p>
-                        </li>
-                        <li>
-                            <p>Shell - 395</p>
-                        </li>
-                        <li>
-                            <p>Gas</p>
-                        </li>
-                        <li>
-                            <p>Vehicle Gas</p>
-                        </li>
-                        <li>
-                            <p>1994 Subaru Legacy</p>
-                        </li>
-                        <li>
-                            <p>1 @ $33.73</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    {  
+                        this.props.expenses.map(expense =>
+                            <ul className="ul-lines" key={expense.expense_id}>
+                                <li>
+                                    <p>{expense.pdate}</p>
+                                </li>
+                                <li>
+                                    <p>{expense.business_name}</p>
+                                </li>
+                                <li>
+                                    <p>{expense.name}</p>
+                                </li>
+                                <li>
+                                    <p>{expense.expense_category}</p>
+                                </li>
+                                <li>
+                                    <p>{expense.invoice_id === null ? (expense.vehicle_id === null ? expense.man_year + " " + expense.make + " " + expense.model : <span>&nbsp;</span>) : "INV# " + expense.invoice_id}</p>
+                                </li>
+                                <li>
+                                    <p>{expense.quantity} @ ${expense.amount}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );

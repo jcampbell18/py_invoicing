@@ -12,25 +12,23 @@ class Terms extends React.Component {
                             <p className="heading">Name</p>
                         </li>
                         <li>
-                            <p className="heading">Description</p>
-                        </li>
-                        <li>
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Due on Receipt</p>
-                        </li>
-                        <li>
-                            <p>&nbsp;</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    {  
+                        this.props.terms.map(term =>
+                            <ul className="ul-lines" key={term.term_id}>
+                                <li>
+                                    <p>{term.name}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );

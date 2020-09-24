@@ -18,58 +18,23 @@ class Sku extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Winterize</p>
-                        </li>
-                        <li>
-                            <p>Winterize</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Snow Removal</p>
-                        </li>
-                        <li>
-                            <p>	Shovel Walkway, Driveway, Paths</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Lock Replacement</p>
-                        </li>
-                        <li>
-                            <p>Changeout locks and associated hardware</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Trash Out</p>
-                        </li>
-                        <li>
-                            <p>Remove all specified debris/junk/garbage from property</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    {  
+                        this.props.sku.map(sk =>
+                            <ul className="ul-lines" key={sk.sku_id}>
+                                <li>
+                                    <p>{sk.name}</p>
+                                </li>
+                                <li>
+                                    <p>{sk.description}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );

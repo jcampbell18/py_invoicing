@@ -24,17 +24,20 @@ class SubNav extends React.Component {
     onSubMenuSelection = (e) => {
         e.preventDefault();
         const sel = e.currentTarget.querySelector('h6').innerHTML;
-        // console.log(sel);
-        // if (sel === "Back") {
-        //     sel = this.props.nav;
-        // }
-        // console.log(sel);
-        this.props.onSubNavSelection(sel);
+
+        if (sel === 'Back') {
+            this.props.onSubNavSelection(this.props.nav);
+        } else {
+            this.props.onSubNavSelection(sel);
+        }
+    }
+
+    onAdd = (e) => {
+        e.preventDefault();
+        this.props.onSubNavSelection(this.props.subnav.substring(0, this.props.subnav.length-1));
     }
 
     getSubNav() {
-        // console.log("getSubNav: this.props.nav: ", this.props.nav);
-        // console.log("getSubNav: this.props.subnav: ", this.props.subnav);
         switch(this.props.subnav) {
             case "Dashboard":
                 return (
@@ -47,8 +50,8 @@ class SubNav extends React.Component {
                         </li>
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_invoicing} alt="Invoicing" title="Invoicing"/>
-                                <h6>Invoicing</h6>
+                                <img src={img_invoicing} alt="Invoices" title="Invoices"/>
+                                <h6>Invoices</h6>
                             </a>
                         </li>
                         <li>
@@ -56,40 +59,11 @@ class SubNav extends React.Component {
                                 <img src={img_bids} alt="Bids" title="Bids"/>
                                 <h6>Bids</h6>
                             </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_clients} alt="Clients" title="Clients"/>
-                                <h6>Clients</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_sku} alt="SKU" title="SKU"/>
-                                <h6>Sku</h6>
-                            </a>
-                        </li>
+                        </li>                       
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
                                 <img src={img_mileage} alt="Mileage" title="Mileage"/>
                                 <h6>Mileage</h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_terms} alt="Terms" title="Terms"/>
-                                <h6>Terms</h6>
-                            </a>
-                        </li>
-                    </ol>
-                );
-            case "Content":
-                return (
-                    <ol>
-                        <li>
-                            <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_changelog} alt="Changelog" title="Changelog"/>
-                                <h6>Changelog</h6>
                             </a>
                         </li>
                         <li>
@@ -100,8 +74,19 @@ class SubNav extends React.Component {
                         </li>
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_expense_categories} alt="Expense Categories" title="Expense Categories"/>
-                                <h6>Expense Categories</h6>
+                                <img src={img_reports} alt="Reports" title="Reports"/>
+                                <h6>Reports</h6>
+                            </a>
+                        </li>
+                    </ol>
+                );
+            case "Content":
+                return (
+                    <ol>
+                        <li>
+                            <a href="/#" onClick={this.onSubMenuSelection}>
+                                <img src={img_clients} alt="Clients" title="Clients"/>
+                                <h6>Clients</h6>
                             </a>
                         </li>
                         <li>
@@ -112,18 +97,41 @@ class SubNav extends React.Component {
                         </li>
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_vehicles} alt="Vehicles" title="Vehicles"/>
-                                <h6>Vehicles</h6>
+                                <img src={img_expense_categories} alt="Expense Categories" title="Expense Categories"/>
+                                <h6>Expense Categories</h6>
                             </a>
                         </li>
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_reports} alt="Reports" title="Reports"/>
-                                <h6>Reports</h6>
+                                <img src={img_sku} alt="SKU" title="SKU"/>
+                                <h6>Sku</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick={this.onSubMenuSelection}>
+                                <img src={img_terms} alt="Terms" title="Terms"/>
+                                <h6>Terms</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#" onClick={this.onSubMenuSelection}>
+                                <img src={img_vehicles} alt="Vehicles" title="Vehicles"/>
+                                <h6>Vehicles</h6>
                             </a>
                         </li>
                     </ol>
                 );
+                case "Settings":
+                    return (
+                        <ol>
+                            <li>
+                                <a href="/#" onClick={this.onSubMenuSelection}>
+                                    <img src={img_changelog} alt="Changelog" title="Changelog"/>
+                                    <h6>Changelog</h6>
+                                </a>
+                            </li>
+                        </ol>
+                    );
             default:
                 return (
                     <ol>
@@ -134,7 +142,7 @@ class SubNav extends React.Component {
                             </a>
                         </li>
                         <li>
-                            <a href="/#" onClick={this.onSubMenuSelection}>
+                            <a href="/#" onClick={this.onAdd}>
                                 <img src={img_add} alt="Add New" title="Add New"/>
                                 <h6>Add</h6>
                             </a>

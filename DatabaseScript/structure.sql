@@ -23,7 +23,7 @@ CREATE TABLE `bids` (
   `sku_id` int(10) NOT NULL,
   `bid_date` date NOT NULL,
   `description` mediumtext NOT NULL,
-  `amount` decimal(8,2) NOT NULL,
+  `amount` decimal(8,2) NOT NULL DEFAULT 0.00,
   `approve` tinyint(1) NOT NULL DEFAULT 0,
   `denied` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

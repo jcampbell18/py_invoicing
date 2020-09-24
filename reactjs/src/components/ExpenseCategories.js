@@ -18,32 +18,23 @@ class ExpenseCategories extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Vehicle Gas</p>
-                        </li>
-                        <li>
-                            <p>Vehicle Gas</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Building Materials</p>
-                        </li>
-                        <li>
-                            <p>Building Materials</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    { 
+                        this.props.expense_categories.map(ec =>
+                            <ul className="ul-lines" key={ec.expense_category_id}>
+                                <li>
+                                    <p>{ec.name}</p>
+                                </li>
+                                <li>
+                                    <p>{ec.description}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );

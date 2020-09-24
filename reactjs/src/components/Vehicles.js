@@ -27,28 +27,32 @@ class Vehicles extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>1994</p>
-                        </li>
-                        <li>
-                            <p>Subaru</p>
-                        </li>
-                        <li>
-                            <p>Legacy</p>
-                        </li>
-                        <li>
-                            <p>L</p>
-                        </li>
-                        <li>
-                            <p>2.2L 2212 CC H4</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    {
+                        this.props.vehicles.map(vehicle =>
+                            <ul className="ul-lines" key={vehicle.vehicle_id}>
+                                <li>
+                                    <p>{vehicle.man_year}</p>
+                                </li>
+                                <li>
+                                    <p>{vehicle.make}</p>
+                                </li>
+                                <li>
+                                    <p>{vehicle.model}</p>
+                                </li>
+                                <li>
+                                    <p>{vehicle.submodel}</p>
+                                </li>
+                                <li>
+                                    <p>{vehicle.notes}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );

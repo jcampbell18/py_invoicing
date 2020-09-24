@@ -27,28 +27,32 @@ class Mileage extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>10-21-2010</p>
-                        </li>
-                        <li>
-                            <p>	104 W Broadway St, St. John, WA 99171 (#INV_0008)</p>
-                        </li>
-                        <li>
-                            <p>187673</p>
-                        </li>
-                        <li>
-                            <p>187747</p>
-                        </li>
-                        <li>
-                            <p>74</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    {  
+                        this.props.mileage.map(mile =>
+                            <ul className="ul-lines" key={mile.mileage_id}>
+                                <li>
+                                    <p>{mile.drive_date}</p>
+                                </li>
+                                <li>
+                                    <p>{mile.address}, {mile.city}, {mile.state} {mile.zipcode}</p>
+                                </li>
+                                <li>
+                                    <p>{mile.start_mileage}</p>
+                                </li>
+                                <li>
+                                    <p>{mile.end_mileage}</p>
+                                </li>
+                                <li>
+                                    <p>{mile.subtotal}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );

@@ -1,49 +1,44 @@
 import React from 'react'
+import img_checkmark from '../img/icons/32x32/checkmark.png'
 import img_view from '../img/icons/32x32/view.png'
 
-class Clients extends React.Component {
-    render() {
+class Changelog extends React.Component {
+    render() { 
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Clients</h6>
+                    <h6>Changelog</h6>
                     <ul>
                         <li>
-                            <p className="heading">Business Name</p>
+                            <p className="heading">Date</p>
                         </li>
                         <li>
-                            <p className="heading">Contact Name</p>
+                            <p className="heading">Category</p>
                         </li>
                         <li>
-                            <p className="heading">Address, City, State &amp; Zipcode</p>
+                            <p className="heading">Description</p>
                         </li>
                         <li>
-                            <p className="heading">Phone</p>
-                        </li>
-                        <li>
-                            <p className="heading">Email</p>
+                            <p className="heading">Complete</p>
                         </li>
                         <li>
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    { 
-                        this.props.clients.map(client =>
-                            <ul className="ul-lines" key={client.company_id}>
+                    {  
+                        this.props.changelogs.map(changelog =>
+                            <ul className="ul-lines" key={changelog.changelog_id}>
                                 <li>
-                                    <p>{client.business_name}</p>
+                                    <p>{changelog.timestamp}</p>
                                 </li>
                                 <li>
-                                    <p>{client.contact_name}</p>
-                                </li> 
-                                <li>
-                                    <p>{client.address}, {client.city}, {client.state} {client.zipcode}</p>
+                                    <p>{changelog.name}</p>
                                 </li>
                                 <li>
-                                    <p>{client.phone}</p>
+                                    <p>{changelog.description}</p>
                                 </li>
                                 <li>
-                                    <p>{client.email}</p>
+                                    {changelog.complete === 1 ? <img src={img_checkmark} alt="Completed" title="Completed" /> : <p>&nbsp;</p> }
                                 </li>
                                 <li>
                                     <a href="/#">
@@ -51,7 +46,7 @@ class Clients extends React.Component {
                                     </a>
                                 </li>
                             </ul>
-                        ) 
+                        )
                     }
                 </section>
             </main>
@@ -59,4 +54,4 @@ class Clients extends React.Component {
     }    
 }
 
-export default Clients;
+export default Changelog;

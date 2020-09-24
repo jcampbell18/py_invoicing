@@ -26,3 +26,12 @@ div.container {
   text-decoration: underline;
   padding: 0.4em 0;
 }
+
+.textarea-s {
+  display: block;
+  width: 90%;
+  overflow: hidden;
+  resize: both;
+  min-height: 100px;
+  padding: 0.4em;
+}

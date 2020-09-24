@@ -12,25 +12,47 @@ class Vendors extends React.Component {
                             <p className="heading">Business Name</p>
                         </li>
                         <li>
+                            <p className="heading">Nickname</p>
+                        </li>
+                        <li>
                             <p className="heading">Address, City, State &amp; Zipcode</p>
+                        </li>
+                        <li>
+                            <p className="heading">Phone</p>
+                        </li>
+                        <li>
+                            <p className="heading">Website</p>
                         </li>
                         <li>
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>Home Depot - Valley</p>
-                        </li>
-                        <li>
-                            <p>5617 E Sprague Ave., Spokane Valley, WA 99212</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    { 
+                        this.props.vendors.map(vendor =>
+                            <ul className="ul-lines" key={vendor.company_id}>
+                                <li>
+                                    <p>{vendor.business_name}</p>
+                                </li>
+                                <li>
+                                    <p>{vendor.nickname}</p>
+                                </li> 
+                                <li>
+                                    <p>{vendor.address}, {vendor.city}, {vendor.state} {vendor.zipcode}</p>
+                                </li>
+                                <li>
+                                    <p>{vendor.phone}</p>
+                                </li>
+                                <li>
+                                    <p>{vendor.website}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        ) 
+                    }
                 </section>
             </main>
         );

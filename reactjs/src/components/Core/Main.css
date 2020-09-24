@@ -7,8 +7,6 @@ main {
     grid-template-rows: repeat(auto-fit, minmax(162px, 1fr));
     grid-template-columns: repeat(auto-fit, minmax(408px, 1fr));
     gap: 1.2em;
-    /* justify-items: center;
-    align-items: start; */
 
     display: flex;
     flex-flow: row wrap;
@@ -31,6 +29,69 @@ main section h6 {
 main li p {
     padding: 0.4em;
 }
+
+main li input {
+    padding: 0.4em;
+}
+
+main li input[type="text"] {
+    width: 85%;
+}
+
+/*** SECTION: Add New... ***/
+main section.add-new {
+    min-width: 40%;
+    max-width: 60%;
+}
+
+main section.add-new ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 0.8em 0;
+}
+
+main section.add-new ul:last-child li:first-child {
+    justify-self: center;
+}
+
+main section.add-new ul li:first-child {
+    justify-self: end;
+    padding-right: 0.4em;
+}
+
+main section.add-new ul:not(last-child) li:last-child {
+    justify-self: start;
+    width: 100%;
+} 
+
+main section.add-new ul li input[type='text'] {
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+main section.add-new ul li.button-end input {
+    justify-self: end;
+}
+
+main section.add-new ul li select,
+main section.add-new ul li select option {
+    padding: 0.4em 0;
+}
+
+main section.add-new ul li input.buttons {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 1.0em;
+}
+
+main section.add-new ul li input.buttons:hover {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
 
 /*** SECTION: Reports ***/
 /* main section.reports */

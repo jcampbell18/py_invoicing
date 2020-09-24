@@ -3,15 +3,15 @@ import img_checkmark from '../img/icons/32x32/checkmark.png'
 import img_view from '../img/icons/32x32/view.png'
 import img_print from '../img/icons/32x32/print.png'
 
-class Bids extends React.Component {
+class Invoices extends React.Component {
     render() {
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Bids</h6>
+                    <h6>Invoices</h6>
                     <ul>
                         <li>
-                            <p className="heading">Bid #</p>
+                            <p className="heading">Invoice #</p>
                         </li>
                         <li>
                             <p className="heading">Date</p>
@@ -26,7 +26,10 @@ class Bids extends React.Component {
                             <p className="heading">Amount</p>
                         </li>
                         <li>
-                            <p className="heading">Approved?</p>
+                            <p className="heading">Completed?</p>
+                        </li>
+                        <li>
+                            <p className="heading">Paid?</p>
                         </li>
                         <li>
                             <p className="heading">View</p>
@@ -35,26 +38,29 @@ class Bids extends React.Component {
                             <p className="heading">Print</p>
                         </li>
                     </ul>
-                    { 
-                        this.props.bids.map(bid =>
-                            <ul className="ul-lines" key={bid.bid_id}>
+                    {  
+                        this.props.invoices.map(invoice =>
+                            <ul className="ul-lines" key={invoice.invoice_id}>
                                 <li>
-                                    <p>{bid.bid_id}</p>
+                                    <p>{invoice.invoice_id}</p>
                                 </li>
                                 <li>
-                                    <p>{bid.bid_date}</p>
+                                    <p>{invoice.start_date}</p>
                                 </li>
                                 <li>
-                                    <p>{bid.address}, {bid.city}, {bid.state} {bid.zipcode}</p>
+                                    <p>{invoice.address}, {invoice.city}, {invoice.state} {invoice.zipcode}</p>
                                 </li>
                                 <li>
-                                    <p>{bid.sku_name}</p>
+                                    <p>{invoice.sku_name}</p>
                                 </li>
                                 <li>
-                                    <p>${bid.amount}</p>
+                                    <p>{invoice.amount !== null ? invoice.amount : "$0.00"}</p>
                                 </li>
                                 <li>
-                                    {bid.approve === 1 ? <img src={img_checkmark} alt="Approved" title="Approved" /> : <p>&nbsp;</p> }
+                                    {invoice.complete === 1 ? <img src={img_checkmark} alt="Completed" title="Completed" /> : <p>&nbsp;</p> }
+                                </li>
+                                <li>
+                                    {invoice.paid === 1 ? <img src={img_checkmark} alt="Paid" title="Paid" /> : <p>&nbsp;</p> }
                                 </li>
                                 <li>
                                     <a href="/#">
@@ -75,4 +81,4 @@ class Bids extends React.Component {
     }    
 }
 
-export default Bids;
+export default Invoices;

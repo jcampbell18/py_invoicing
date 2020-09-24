@@ -2,7 +2,9 @@ import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
 class ProjectSites extends React.Component {
+
     render() { 
+
         return (
             <main>
                 <section className="outstanding-invoices">
@@ -27,94 +29,32 @@ class ProjectSites extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>36124 N Milan Elk Rd</p>
-                        </li>
-                        <li>
-                            <p>Chattoroy</p>
-                        </li>
-                        <li>
-                            <p>WA</p>
-                        </li>
-                        <li>
-                            <p>99003</p>
-                        </li>
-                        <li>
-                            <p>2610</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>36124 N Milan Elk Rd</p>
-                        </li>
-                        <li>
-                            <p>Chattoroy</p>
-                        </li>
-                        <li>
-                            <p>WA</p>
-                        </li>
-                        <li>
-                            <p>99003</p>
-                        </li>
-                        <li>
-                            <p>2610</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>36124 N Milan Elk Rd</p>
-                        </li>
-                        <li>
-                            <p>Chattoroy</p>
-                        </li>
-                        <li>
-                            <p>WA</p>
-                        </li>
-                        <li>
-                            <p>99003</p>
-                        </li>
-                        <li>
-                            <p>2610</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="ul-lines">
-                        <li>
-                            <p>36124 N Milan Elk Rd</p>
-                        </li>
-                        <li>
-                            <p>Chattoroy</p>
-                        </li>
-                        <li>
-                            <p>WA</p>
-                        </li>
-                        <li>
-                            <p>99003</p>
-                        </li>
-                        <li>
-                            <p>2610</p>
-                        </li>
-                        <li>
-                            <a href="/#">
-                                <img src={img_view} alt="View" title="View"/>
-                            </a>
-                        </li>
-                    </ul>
+                    { 
+                        this.props.project_sites.map(project_site =>
+                            <ul className="ul-lines" key={project_site.project_site_id}>
+                                <li>
+                                    <p>{project_site.address}</p>
+                                </li>
+                                <li>
+                                    <p>{project_site.city}</p>
+                                </li>
+                                <li>
+                                    <p>{project_site.state}</p>
+                                </li>
+                                <li>
+                                    <p>{project_site.zipcode}</p>
+                                </li>
+                                <li>
+                                    <p>{project_site.access_code}</p>
+                                </li>
+                                <li>
+                                    <a href="/#">
+                                        <img src={img_view} alt="View" title="View"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        )
+                    }
                 </section>
             </main>
         );
