@@ -4,6 +4,11 @@ import img_view from '../img/icons/32x32/view.png'
 import img_print from '../img/icons/32x32/print.png'
 
 class Bids extends React.Component {
+
+    onView = (bid) => {
+        this.props.onDataSelection("Bid", bid);
+    }
+
     render() {
         return (
             <main>
@@ -57,7 +62,7 @@ class Bids extends React.Component {
                                     {bid.approve === 1 ? <img src={img_checkmark} alt="Approved" title="Approved" /> : <p>&nbsp;</p> }
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(bid)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>

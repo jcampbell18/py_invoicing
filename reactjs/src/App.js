@@ -46,6 +46,9 @@ class App extends React.Component {
         states: {},
         changelogs: {},
         changelog_categories: {},   
+
+        data: null,
+        title: null,
     }
 
     componentDidMount() {
@@ -69,6 +72,15 @@ class App extends React.Component {
         );
     }
 
+    onDataSelection = (subnav, data) => {
+        this.setState(
+            {
+                subnav,
+                data
+            }
+        );
+    }
+
     getPage() {
         switch(this.state.subnav) {
             case 'Dashboard':
@@ -82,9 +94,9 @@ class App extends React.Component {
             case 'Invoice':
                 return <Invoice title={this.state.subnav} states={this.state.states} />
             case 'Bids':
-                return <Bids bids={this.state.bids} />
+                return <Bids bids={this.state.bids} onDataSelection={this.onDataSelection}/>
             case 'Bid':
-                return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} />
+                return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} data={this.state.data} />
             case 'Clients':
                 return <Clients clients={this.state.clients} />
             case 'Sku':
@@ -133,6 +145,20 @@ class App extends React.Component {
     }
 
     getBids() {
+        fetch('http://localhost:5000/api/bids/full', {
+            method: "GET"
+        }).then(response => {
+            return response.json();
+        }).then(result => {
+            this.setState(
+                {
+                    bids: result
+                }
+            );
+        });
+    }
+
+    getBidsById() {
         fetch('http://localhost:5000/api/bids', {
             method: "GET"
         }).then(response => {
