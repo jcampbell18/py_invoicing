@@ -1,11 +1,10 @@
 import React from 'react'
 
-class Sku extends React.Component {
+class Term extends React.Component {
 
     state = {
-        sku_id: this.props.data.sku_id || null,
+        term_id: this.props.data.term_id || null,
         name: this.props.data.name || null,
-        description: this.props.data.description || null,
     }
 
     handleChange = (e) => {
@@ -25,7 +24,7 @@ class Sku extends React.Component {
         return (
             <main>
                 <section className="add-new">
-                    <h6>{this.props.title}: {this.state.sku_id === null ? "Add New" : "Update Record"}</h6>
+                    <h6>{this.props.title}: {this.state.term_id === null ? "Add New" : "Update Record"}</h6>
                     <ul>
                         <li>
                             <p className="heading">Name: </p>
@@ -36,18 +35,10 @@ class Sku extends React.Component {
                     </ul>
                     <ul>
                         <li>
-                            <p className="heading">Description: </p>
-                        </li>
-                        <li>
-                            <textarea name="description" rows="5" className="textarea-s" placeholder="enter description" value={this.state.description === null ? this.state.value : this.state.description} onChange={this.handleChange} />
-                        </li> 
-                    </ul>
-                    <ul>
-                        <li>
                             <input type="button" className="buttons" value="Cancel" />
                         </li>
                         <li className="button-end">
-                            <input type="submit" className="buttons" value={this.state.sku_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
+                            <input type="submit" className="buttons" value={this.state.term_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
                         </li>
                     </ul>
                 </section>
@@ -56,4 +47,4 @@ class Sku extends React.Component {
     }
 }
 
-export default Sku
+export default Term

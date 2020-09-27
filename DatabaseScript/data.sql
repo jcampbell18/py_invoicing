@@ -196,7 +196,7 @@ INSERT INTO `states` VALUES (45, 'Texas', 'TX');
 INSERT INTO `states` VALUES (46, 'Utah', 'UT');
 INSERT INTO `states` VALUES (47, 'Vermont', 'VT');
 INSERT INTO `states` VALUES (48, 'Virginia', 'VA');
-INSERT INTO `states` VALUES (49, 'Washington', 49);
+INSERT INTO `states` VALUES (49, 'Washington', 'WA');
 INSERT INTO `states` VALUES (50, 'West Virginia', 'WV');
 INSERT INTO `states` VALUES (51, 'Wisconsin', 'WI');
 INSERT INTO `states` VALUES (52, 'Wyoming', 'WY');

@@ -2,6 +2,11 @@ import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
 class Vendors extends React.Component {
+
+    onView = (vendor) => {
+        this.props.onDataSelection("Vendor", vendor);
+    }
+
     render() { 
         return (
             <main>
@@ -34,7 +39,7 @@ class Vendors extends React.Component {
                                     <p>{vendor.business_name}</p>
                                 </li>
                                 <li>
-                                    <p>{vendor.nickname}</p>
+                                    <p>{vendor.contact_name}</p>
                                 </li> 
                                 <li>
                                     <p>{vendor.address}, {vendor.city}, {vendor.state} {vendor.zipcode}</p>
@@ -46,7 +51,7 @@ class Vendors extends React.Component {
                                     <p>{vendor.website}</p>
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(vendor)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>

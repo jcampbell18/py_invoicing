@@ -2,20 +2,20 @@ import React from 'react'
 import './SubNav.css'
 // dashboard
 import img_projectsites from '../../img/icons/64x64/project_sites.png'
-import img_invoicing from '../../img/icons/64x64/invoicing.png'
+import img_invoices from '../../img/icons/64x64/invoices.png'
 import img_bids from '../../img/icons/64x64/bids.png'
-import img_clients from '../../img/icons/64x64/clients.png'
-import img_sku from '../../img/icons/64x64/sku.png'
 import img_mileage from '../../img/icons/64x64/mileage.png'
-import img_terms from '../../img/icons/64x64/terms.png'
-// content
-import img_changelog from '../../img/icons/64x64/changelog.png'
 import img_expenses from '../../img/icons/64x64/expenses.png'
-import img_expense_categories from '../../img/icons/64x64/expense_categories.png'
-import img_vendors from '../../img/icons/64x64/vendors.png'
-import img_vehicles from '../../img/icons/64x64/vehicles.png'
 import img_reports from '../../img/icons/64x64/reports.png'
+// content
+import img_clients from '../../img/icons/64x64/clients.png'
+import img_vendors from '../../img/icons/64x64/vendors.png'
+import img_expense_categories from '../../img/icons/64x64/expense_categories.png'
+import img_sku from '../../img/icons/64x64/sku.png'
+import img_terms from '../../img/icons/64x64/terms.png'
+import img_vehicles from '../../img/icons/64x64/vehicles.png'
 //other
+import img_changelog from '../../img/icons/64x64/changelog.png'
 import img_back from '../../img/icons/64x64/back-arrow.png'
 import img_add from '../../img/icons/64x64/add.png'
 
@@ -34,7 +34,12 @@ class SubNav extends React.Component {
 
     onAdd = (e) => {
         e.preventDefault();
-        this.props.onSubNavSelection(this.props.subnav.substring(0, this.props.subnav.length-1));
+        
+        if (this.props.subnav.substring(this.props.subnav.length-3) === 'ies') {
+            this.props.onSubNavSelection(this.props.subnav.substring(0, this.props.subnav.length-3) + 'y');
+        } else {
+            this.props.onSubNavSelection(this.props.subnav.substring(0, this.props.subnav.length-1));
+        }
     }
 
     getSubNav() {
@@ -50,7 +55,7 @@ class SubNav extends React.Component {
                         </li>
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_invoicing} alt="Invoices" title="Invoices"/>
+                                <img src={img_invoices} alt="Invoices" title="Invoices"/>
                                 <h6>Invoices</h6>
                             </a>
                         </li>
@@ -62,7 +67,7 @@ class SubNav extends React.Component {
                         </li>                       
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_mileage} alt="Mileage" title="Mileage"/>
+                                <img src={img_mileage} alt="Mileages" title="Mileage"/>
                                 <h6>Mileage</h6>
                             </a>
                         </li>
@@ -104,7 +109,7 @@ class SubNav extends React.Component {
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
                                 <img src={img_sku} alt="SKU" title="SKU"/>
-                                <h6>Sku</h6>
+                                <h6>Skus</h6>
                             </a>
                         </li>
                         <li>

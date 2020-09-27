@@ -44,6 +44,10 @@ main section.add-new {
     max-width: 60%;
 }
 
+main section.add-new input.small {
+    width: 30%;
+}
+
 main section.add-new ul {
     list-style: none;
     display: grid;

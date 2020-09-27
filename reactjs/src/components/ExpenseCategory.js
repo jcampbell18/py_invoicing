@@ -1,9 +1,9 @@
 import React from 'react'
 
-class Sku extends React.Component {
+class ExpenseCategory extends React.Component {
 
     state = {
-        sku_id: this.props.data.sku_id || null,
+        expense_category_id: this.props.data.expense_category_id || null,
         name: this.props.data.name || null,
         description: this.props.data.description || null,
     }
@@ -25,7 +25,7 @@ class Sku extends React.Component {
         return (
             <main>
                 <section className="add-new">
-                    <h6>{this.props.title}: {this.state.sku_id === null ? "Add New" : "Update Record"}</h6>
+                    <h6>{this.props.title}: {this.state.expense_category_id === null ? "Add New" : "Update Record"}</h6>
                     <ul>
                         <li>
                             <p className="heading">Name: </p>
@@ -47,7 +47,7 @@ class Sku extends React.Component {
                             <input type="button" className="buttons" value="Cancel" />
                         </li>
                         <li className="button-end">
-                            <input type="submit" className="buttons" value={this.state.sku_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
+                            <input type="submit" className="buttons" value={this.state.expense_category_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
                         </li>
                     </ul>
                 </section>
@@ -56,4 +56,4 @@ class Sku extends React.Component {
     }
 }
 
-export default Sku
+export default ExpenseCategory

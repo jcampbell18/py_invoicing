@@ -2,6 +2,11 @@ import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
 class Clients extends React.Component {
+
+    onView = (client) => {
+        this.props.onDataSelection("Client", client);
+    }
+
     render() {
         return (
             <main>
@@ -46,7 +51,7 @@ class Clients extends React.Component {
                                     <p>{client.email}</p>
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(client)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>

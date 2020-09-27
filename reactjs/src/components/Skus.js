@@ -1,17 +1,18 @@
 import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
-class ExpenseCategories extends React.Component {
+class Skus extends React.Component {
 
-    onView = (expense_category) => {
-        this.props.onDataSelection("Expense Category", expense_category);
+    onView = (sku) => {
+        this.props.onDataSelection("Sku", sku);
     }
 
-    render() { 
+    render() {
+       
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Expense Categories</h6>
+                    <h6>Skus</h6>
                     <ul>
                         <li>
                             <p className="heading">Name</p>
@@ -23,17 +24,17 @@ class ExpenseCategories extends React.Component {
                             <p className="heading">View</p>
                         </li>
                     </ul>
-                    { 
-                        this.props.expense_categories.map(expense_category =>
-                            <ul className="ul-lines" key={expense_category.expense_category_id}>
+                    {  
+                        this.props.skus.map(sku =>
+                            <ul className="ul-lines" key={sku.sku_id}>
                                 <li>
-                                    <p>{expense_category.name}</p>
+                                    <p>{sku.name}</p>
                                 </li>
                                 <li>
-                                    <p>{expense_category.description}</p>
+                                    <p>{sku.description}</p>
                                 </li>
                                 <li>
-                                    <a href="/#" onClick={() => this.onView(expense_category)}>
+                                    <a href="/#" onClick={() => this.onView(sku)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>
@@ -46,4 +47,4 @@ class ExpenseCategories extends React.Component {
     }    
 }
 
-export default ExpenseCategories;
+export default Skus;

@@ -26,7 +26,11 @@ h2 {
 h3,
 h4,
 h5,
-p, select, option, input {
+p, 
+select, 
+option, 
+input, 
+textarea {
   font-family: 'Roboto-Regular';
   src: url('/fonts/Roboto-Regular.ttf');
 }
@@ -58,7 +62,11 @@ h6 {
   padding: 0.3em 1.0em;
 }
 
-p, select, option, input {
+p, 
+select, 
+option, 
+input, 
+textarea {
   font-size: 1.0em;
 }
 

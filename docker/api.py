@@ -42,11 +42,6 @@ def AccesslevelsId(id):
 
 @app.route('/api/bids', methods=['GET'])
 def Bids():
-   sql = "SELECT b.bid_id, b.company_id, b.bid_date, b.project_site_id, p.address, p.city, p.state_id, s.name AS state, sk.name AS sku_name, CAST(b.amount AS CHAR) AS amount, b.approve FROM bids AS b, companies AS c, project_sites AS p, sku AS sk, states AS s WHERE b.company_id=c.company_id AND b.project_site_id=p.project_site_id AND b.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY b.bid_id"
-   return GetResults(sql)
-
-@app.route('/api/bids/full', methods=['GET'])
-def BidsFull():
    sql = "SELECT b.bid_id, b.company_id, c.business_name AS business_name, b.project_site_id, p.address, p.city, p.state_id, s.name AS state, b.sku_id, sk.name AS sku_name, b.bid_date, b.description, CAST(b.amount AS CHAR) AS amount, b.approve, b.denied FROM bids AS b, companies AS c, project_sites AS p, sku AS sk, states AS s WHERE b.company_id=c.company_id AND b.project_site_id=p.project_site_id AND b.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY b.bid_id"
    return GetResults(sql)
 
@@ -86,11 +81,6 @@ def ChangelogCategoriesById():
 
 @app.route('/api/clients', methods=['GET'])
 def Clients():
-   sql = "SELECT c.company_id, c.company_category_id, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.email FROM companies AS c, states AS s WHERE c.company_category_id=1 AND c.state_id=s.state_id"
-   return GetResults(sql)
-
-@app.route('/api/clients/full', methods=['GET'])
-def ClientsFull():
    sql = "SELECT c.company_id, c.company_category_id, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.fax, c.email, c.website, c.logo_image FROM companies AS c, states AS s WHERE c.company_category_id=1 AND c.state_id=s.state_id"
    return GetResults(sql)
 
@@ -127,11 +117,6 @@ def CompanyCategoriesById():
 
 @app.route('/api/expenses', methods=['GET'])
 def Expenses():
-   sql = "SELECT e.expense_id, e.pdate, c.business_name, e.name, ec.name AS expense_category, e.invoice_id, e.vehicle_id, v.man_year, v.make, v.model, e.quantity, CAST(e.amount AS CHAR) AS amount FROM expenses AS e, invoices AS i, companies AS c, expense_categories AS ec, vehicles AS v WHERE e.invoice_id=i.invoice_id AND e.company_id=c.company_id AND e.expense_category_id=ec.expense_category_id AND e.vehicle_id=v.vehicle_id ORDER BY e.expense_id"
-   return GetResults(sql)
-
-@app.route('/api/expenses/full', methods=['GET'])
-def ExpensesFull():
    sql = "SELECT e.expense_id, e.invoice_id, e.company_id, c.business_name, e.expense_category_id, ec.name AS expense_catagory, e.name, e.vehicle_id, v.man_year, v.make, v.model, e.pdate, e.name, e.quantity, CAST(e.amount AS CHAR) AS amount, CAST(e.subtotal AS CHAR) AS subtotal, e.tax_included, CAST(e.tax AS CHAR) AS tax, CAST(e.total AS CHAR) AS total, e.receipt_reference, e.receipt_image FROM expenses AS e, invoices AS i, companies AS c, expense_categories AS ec, vehicles AS v WHERE e.invoice_id=i.invoice_id AND e.company_id=c.company_id AND e.expense_category_id=ec.expense_category_id AND e.vehicle_id=v.vehicle_id ORDER BY e.expense_id"
    return GetResults(sql)
 
@@ -155,17 +140,12 @@ def ExpenseCategoriesById():
 
 @app.route('/api/invoices', methods=['GET'])
 def Invoices():
-   sql = "SELECT i.invoice_id, i.start_date, i.end_date, i.company_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, sk.name AS sku_name, CAST(i.amount AS CHAR) AS amount, i.complete, i.paid FROM invoices AS i, project_sites AS p, sku AS sk, states AS s WHERE i.project_site_id=p.project_site_id AND i.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY i.invoice_id"
+   sql = "SELECT DISTINCT i.invoice_id, i.company_id, c.business_name AS business_name, i.project_site_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, i.sku_id, sk.name AS sku_name, i.bid_id, i.term_id, i.start_date, i.end_date, i.description, CAST(i.amount AS CHAR) AS amount, i.receipts, i.images, i.image_links, i.mileage_id, CAST(i.loan_amount AS CHAR) AS loan_amount, i.loan_paid, CAST(i.interest_amount AS CHAR) AS interest_amount, i.interest_paid, i.complete, i.paid, i.paid_checknum, i.paid_date, CAST(i.project_cost AS CHAR) AS project_cost, CAST(i.save_tax AS CHAR) AS save_tax, CAST(i.actual_net AS CHAR) AS actual_net FROM invoices AS i, companies AS c, project_sites AS p, sku AS sk, states AS s, mileage AS m WHERE i.company_id=c.company_id AND i.project_site_id=p.project_site_id AND i.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY i.invoice_id"
    return GetResults(sql)
 
 @app.route('/api/invoices/outstanding', methods=['GET'])
 def InvoicesOutstanding():
    sql = "SELECT i.invoice_id, i.start_date, i.end_date, p.address, p.city, p.state_id, s.name AS state, p.zipcode, sk.name AS sku_name, CAST(i.amount AS CHAR) AS amount, i.complete FROM invoices AS i, project_sites AS p, sku AS sk, states AS s WHERE i.paid=0 AND i.project_site_id=p.project_site_id AND i.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY i.invoice_id"
-   return GetResults(sql)
-
-@app.route('/api/invoices/full', methods=['GET'])
-def InvoicesFull():
-   sql = "SELECT i.invoice_id, i.company_id, c.business_name AS business_name, i.project_site_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, i.sku_id, sk.name AS sku_name, i.bid_id, i.term_id, i.start_date, i.end_date, i.description, CAST(i.amount AS CHAR) AS amount, i.receipts, i.images, i.image_links, i.mileage_id, CAST(i.loan_amount AS CHAR) AS loan_amount, i.loan_paid, CAST(i.interest_amount AS CHAR) AS interest_amount, i.interest_paid, i.complete, i.paid, i.paid_checknum, i.paid_date, CAST(i.project_cost AS CHAR) AS project_cost, CAST(i.save_tax AS CHAR) AS save_tax, CAST(i.actual_net AS CHAR) AS actual_net FROM invoices AS i, companies AS c, project_sites AS p, sku AS sk, states AS s, mileage AS m WHERE i.company_id=c.company_id AND i.project_site_id=p.project_site_id AND i.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY i.invoice_id"
    return GetResults(sql)
 
 @app.route('/api/invoices/id', methods=['GET'])
@@ -178,11 +158,6 @@ def InvoicesById():
 
 @app.route('/api/mileage', methods=['GET'])
 def Mileage():
-   sql = "SELECT m.mileage_id, m.drive_date, p.address, p.city, p.state_id, s.name AS state, p.zipcode, m.start_mileage, m.end_mileage, m.subtotal FROM mileage AS m, project_sites AS p, states AS s WHERE m.project_site_id=p.project_site_id AND p.state_id=s.state_id ORDER BY m.mileage_id"
-   return GetResults(sql)
-
-@app.route('/api/mileage/full', methods=['GET'])
-def MileageFull():
    sql = "SELECT m.mileage_id, m.project_site_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, m.vehicle_id, v.man_year, v.make, v.model, m.invoice_id1, m.invoice_id2, m.invoice_id3, m.drive_date, m.start_mileage, m.end_mileage, m.subtotal, m.notes FROM mileage AS m, project_sites AS p, vehicles AS v, states AS s WHERE m.project_site_id=p.project_site_id AND p.state_id=s.state_id AND m.vehicle_id=v.vehicle_id ORDER BY m.mileage_id"
    return GetResults(sql)
 
@@ -196,12 +171,7 @@ def MileageById():
 
 @app.route('/api/project_sites', methods=['GET'])
 def ProjectSites():
-   sql = "SELECT p.project_site_id, p.address, p.city, s.name AS state, p.zipcode, p.access_code FROM project_sites AS p, states AS s WHERE p.state_id=s.state_id"
-   return GetResults(sql)
-
-@app.route('/api/project_sites/full', methods=['GET'])
-def ProjectSitesFull():
-   sql = "SELECT p.project_site_id, p.address, p.city, s.name AS state, p.zipcode, p.access_code, p.map_link FROM project_sites AS p, states AS s WHERE p.state_id=s.state_id"
+   sql = "SELECT p.project_site_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, p.access_code, p.map_link FROM project_sites AS p, states AS s WHERE p.state_id=s.state_id"
    return GetResults(sql)
 
 @app.route('/api/project_sites/id', methods=['GET'])
@@ -227,8 +197,8 @@ def ProjectSitesDelete(index):
    sql = "SELECT p.project_site_id, p.address, p.city, s.name AS state, p.zipcode, p.access_code, p.map_link FROM project_sites AS p, states AS s WHERE p.state_id=s.state_id"
    return GetResults(sql)
 
-@app.route('/api/sku', methods=['GET'])
-def Sku():
+@app.route('/api/skus', methods=['GET'])
+def Skus():
    sql = "SELECT sku_id, name, description FROM sku"
    return GetResults(sql)
 
@@ -282,11 +252,6 @@ def UsersById():
 
 @app.route('/api/vehicles', methods=['GET'])
 def Vehicles():
-   sql = "SELECT vehicle_id, man_year, make, model, submodel, notes FROM vehicles ORDER BY vehicle_id"
-   return GetResults(sql)
-
-@app.route('/api/vehicles/full', methods=['GET'])
-def VehiclesFull():
    sql = "SELECT vehicle_id, man_year, make, model, submodel, engine, notes FROM vehicles ORDER BY vehicle_id"
    return GetResults(sql)
 
@@ -300,12 +265,7 @@ def VehiclesById():
 
 @app.route('/api/vendors', methods=['GET'])
 def Vendors():
-   sql = "SELECT c.company_id, c.business_name, c.contact_name AS nickname, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.website FROM companies AS c, states AS s WHERE c.company_category_id=2 AND c.state_id=s.state_id"
-   return GetResults(sql)
-
-@app.route('/api/vendors/full', methods=['GET'])
-def VendorsFull():
-   sql = "SELECT c.company_id, c.company_category_id, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.website FROM companies AS c, company_categories AS cat, states AS s WHERE c.company_category_id=2 AND c.state_id=s.state_id"
+   sql = "SELECT DISTINCT c.company_id, c.company_category_id, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.website FROM companies AS c, company_categories AS cat, states AS s WHERE c.company_category_id=2 AND c.state_id=s.state_id"
    return GetResults(sql)
 
 @app.route('/api/vendors/id', methods=['GET'])

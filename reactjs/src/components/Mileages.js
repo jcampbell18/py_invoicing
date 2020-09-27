@@ -1,12 +1,12 @@
 import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
-class Mileage extends React.Component {
+class Mileages extends React.Component {
     render() {
         return (
             <main>
                 <section className="outstanding-invoices">
-                    <h6>Mileage</h6>
+                    <h6>Mileages</h6>
                     <ul>
                         <li>
                             <p className="heading">Date</p>
@@ -59,4 +59,4 @@ class Mileage extends React.Component {
     }    
 }
 
-export default Mileage;
+export default Mileages;

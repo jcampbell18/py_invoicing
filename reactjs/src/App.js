@@ -2,24 +2,43 @@ import React from 'react'
 import Header from './components/Core/Header'
 import SubNav from './components/Core/SubNav'
 import Dashboard from './components/Dashboard'
+
 import ProjectSites from './components/ProjectSites'
 import ProjectSite from './components/ProjectSite'
+
 import Invoices from './components/Invoices'
 import Invoice from './components/Invoice'
+
 import Bids from './components/Bids'
 import Bid from './components/Bid'
-import Clients from './components/Clients'
-import Sku from './components/Sku'
-import Mileage from './components/Mileage'
-import Terms from './components/Terms'
+
+import Mileages from './components/Mileages'
+import Expenses from './components/Expenses'
+import Reports from './components/Reports'
+
 import Content from './components/Content'
+
+import Clients from './components/Clients'
+import Client from './components/Client'
+
+import Vendors from './components/Vendors'
+import Vendor from './components/Vendor'
+
+import ExpenseCategories from './components/ExpenseCategories'
+import ExpenseCategory from './components/ExpenseCategory'
+
+import Skus from './components/Skus'
+import Sku from './components/Sku'
+
+import Terms from './components/Terms'
+import Term from './components/Term'
+
+import Vehicles from './components/Vehicles'
+import Vehicle from './components/Vehicle'
+
 import Users from './components/Users'
 import Changelogs from './components/Changelogs'
-import Expenses from './components/Expenses'
-import ExpenseCategories from './components/ExpenseCategories'
-import Vendors from './components/Vendors'
-import Vehicles from './components/Vehicles'
-import Reports from './components/Reports'
+
 import Footer from './components/Core/Footer'
 import './App.css'
 
@@ -32,14 +51,14 @@ class App extends React.Component {
         project_sites: {},
         invoices: {},
         bids: {},
-        mileage: {},
+        mileages: {},
         expenses: {},
         reports: {},
 
         clients: {},
         vendors: {},
         expense_categories: {},
-        sku: {},       
+        skus: {},       
         terms: {},
         vehicles: {},
 
@@ -49,6 +68,7 @@ class App extends React.Component {
 
         data: null,
         title: null,
+        // action: null,
     }
 
     componentDidMount() {
@@ -76,6 +96,7 @@ class App extends React.Component {
         this.setState(
             {
                 subnav,
+                // action: "Edit or Update",
                 data
             }
         );
@@ -84,44 +105,58 @@ class App extends React.Component {
     getPage() {
         switch(this.state.subnav) {
             case 'Dashboard':
-                return <Dashboard />
+                return <Dashboard invoices={this.state.invoices} />
             case 'Project Sites':
-                return <ProjectSites project_sites={this.state.project_sites} />
+                return <ProjectSites project_sites={this.state.project_sites} onDataSelection={this.onDataSelection} />
             case 'Project Site':
-                return <ProjectSite title={this.state.subnav} states={this.state.states} />
+                return <ProjectSite title={this.state.subnav} states={this.state.states} data={this.state.data} />
             case 'Invoices':
-                return <Invoices invoices={this.state.invoices} />
+                return <Invoices invoices={this.state.invoices} onDataSelection={this.onDataSelection} />
             case 'Invoice':
-                return <Invoice title={this.state.subnav} states={this.state.states} />
+                return <Invoice title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} data={this.state.data} bids={this.state.bids} />
             case 'Bids':
-                return <Bids bids={this.state.bids} onDataSelection={this.onDataSelection}/>
+                return <Bids bids={this.state.bids} onDataSelection={this.onDataSelection} />
             case 'Bid':
                 return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} data={this.state.data} />
-            case 'Clients':
-                return <Clients clients={this.state.clients} />
-            case 'Sku':
-                return <Sku sku={this.state.sku} />
-            case 'Mileage':
-                return <Mileage mileage={this.state.mileage} />
-            case 'Terms':
-                return <Terms terms={this.state.terms} />
+            case 'Mileages':
+                return <Mileages mileages={this.state.mileages} onDataSelection={this.onDataSelection} />
+            case 'Expenses':
+                return <Expenses expenses={this.state.expenses} onDataSelection={this.onDataSelection} />
+            case 'Reports':
+                return <Reports onDataSelection={this.onDataSelection} />
+
             case 'Content':
                 return <Content />
+            case 'Clients':
+                return <Clients clients={this.state.clients} onDataSelection={this.onDataSelection} />
+            case 'Client':
+                return <Client title={this.state.subnav} states={this.state.states} data={this.state.data} />
+            case 'Vendors':
+                return <Vendors vendors={this.state.vendors} onDataSelection={this.onDataSelection} />
+            case 'Vendor':
+                return <Vendor title={this.state.subnav} states={this.state.states} data={this.state.data} />
+            case 'Expense Categories':
+                return <ExpenseCategories expense_categories={this.state.expense_categories} onDataSelection={this.onDataSelection} />
+            case 'Expense Category':
+                return <ExpenseCategory title={this.state.subnav} data={this.state.data} />
+            case 'Skus':
+                return <Skus skus={this.state.skus} onDataSelection={this.onDataSelection} />
+            case 'Sku':
+                return <Sku title={this.state.subnav} data={this.state.data} />
+            case 'Terms':
+                return <Terms terms={this.state.terms} onDataSelection={this.onDataSelection} />
+            case 'Term':
+                return <Term title={this.state.subnav} data={this.state.data} />
+            case 'Vehicles':
+                return <Vehicles vehicles={this.state.vehicles} onDataSelection={this.onDataSelection} />
+            case 'Vehicle':
+                return <Vehicle title={this.state.subnav} data={this.state.data} />
+
             case 'Users':
                 return <Users />
             case 'Changelog':
                 console.log("this.state.changelogs: ", this.state.changelogs);
                 return <Changelogs changelogs={this.state.changelogs} />
-            case 'Expenses':
-                return <Expenses expenses={this.state.expenses} />
-            case 'Expense Categories':
-                return <ExpenseCategories expense_categories={this.state.expense_categories} />
-            case 'Vendors':
-                return <Vendors vendors={this.state.vendors} />
-            case 'Vehicles':
-                return <Vehicles vehicles={this.state.vehicles} />
-            case 'Reports':
-                return <Reports />
             default:
                 return <Dashboard />
         }
@@ -135,9 +170,9 @@ class App extends React.Component {
         this.getExpenses();
         this.getExpenseCategories();
         this.getInvoices();
-        this.getMileage();
+        this.getMileages();
         this.getProjectSites();
-        this.getSku();
+        this.getSkus();
         this.getTerms();
         this.getVehicles();
         this.getVendors();
@@ -145,20 +180,6 @@ class App extends React.Component {
     }
 
     getBids() {
-        fetch('http://localhost:5000/api/bids/full', {
-            method: "GET"
-        }).then(response => {
-            return response.json();
-        }).then(result => {
-            this.setState(
-                {
-                    bids: result
-                }
-            );
-        });
-    }
-
-    getBidsById() {
         fetch('http://localhost:5000/api/bids', {
             method: "GET"
         }).then(response => {
@@ -256,7 +277,7 @@ class App extends React.Component {
         });
     }
 
-    getMileage() {
+    getMileages() {
         fetch('http://localhost:5000/api/mileage', {
             method: "GET"
         }).then(response => {
@@ -264,7 +285,7 @@ class App extends React.Component {
         }).then(result => {
             this.setState(
                 {
-                    mileage: result
+                    mileages: result
                 }
             );
         });
@@ -284,15 +305,15 @@ class App extends React.Component {
         });
     }
 
-    getSku() {
-        fetch('http://localhost:5000/api/sku', {
+    getSkus() {
+        fetch('http://localhost:5000/api/skus', {
             method: "GET"
         }).then(response => {
             return response.json();
         }).then(result => {
             this.setState(
                 {
-                    sku: result
+                    skus: result
                 }
             );
         });

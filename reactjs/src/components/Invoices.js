@@ -4,6 +4,11 @@ import img_view from '../img/icons/32x32/view.png'
 import img_print from '../img/icons/32x32/print.png'
 
 class Invoices extends React.Component {
+
+    onView = (invoice) => {
+        this.props.onDataSelection("Invoice", invoice);
+    }
+
     render() {
         return (
             <main>
@@ -63,7 +68,7 @@ class Invoices extends React.Component {
                                     {invoice.paid === 1 ? <img src={img_checkmark} alt="Paid" title="Paid" /> : <p>&nbsp;</p> }
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(invoice)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>

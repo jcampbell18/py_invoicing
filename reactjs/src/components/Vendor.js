@@ -1,15 +1,21 @@
 import React from 'react'
 
-class ProjectSite extends React.Component {
+class Vendor extends React.Component {
 
     state = {
-        project_site_id: this.props.data.project_site_id || null,
+        company_id: this.props.data.company_id || null,
+        company_category_id: this.props.data.company_category_id || 2,
+        business_name: this.props.data.business_name || null,
+        contact_name:  this.props.data.contact_name || null,
         address: this.props.data.address || null,
         city: this.props.data.city || null,
         state_id: this.props.data.state_id || null,
         zipcode: this.props.data.zipcode || null,
-        access_code: this.props.data.access_code || null,
-        map_link: this.props.data.map_link || null,
+        phone: this.props.data.phone || null,
+        fax: this.props.data.fax || null,
+        email: this.props.data.email || null,
+        website: this.props.data.website || null,
+        logo_image: this.props.data.logo_image || null,
     }
 
     handleChange = (e) => {
@@ -29,7 +35,23 @@ class ProjectSite extends React.Component {
         return (
             <main>
                 <section className="add-new">
-                    <h6>{this.props.title}: {this.state.project_site_id === null ? "Add New" : "Update Record"}</h6>
+                    <h6>{this.props.title}: {this.state.company_id === null ? "Add New" : "Update Record"}</h6>
+                    <ul>
+                        <li>
+                            <p className="heading">Business Name: </p>
+                        </li>
+                        <li>
+                            <input type="text" name="business_name" value={this.state.business_name === null ? this.state.value : this.state.business_name} onChange={this.handleChange} />
+                        </li> 
+                    </ul>
+                    <ul>
+                        <li>
+                            <p className="heading">Nickname: </p>
+                        </li>
+                        <li>
+                            <input type="text" name="contact_name" value={this.state.contact_name === null ? this.state.value : this.state.contact_name} onChange={this.handleChange} />
+                        </li> 
+                    </ul>
                     <ul>
                         <li>
                             <p className="heading">Address: </p>
@@ -73,26 +95,26 @@ class ProjectSite extends React.Component {
                     </ul>
                     <ul>
                         <li>
-                            <p className="heading">Access Code: </p>
+                            <p className="heading">Phone #: </p>
                         </li>
                         <li>
-                            <input type="text" name="access_code" className="small" value={this.state.access_code === null ? this.state.value : this.state.access_code} onChange={this.handleChange} />
+                            <input type="text" name="phone" value={this.state.phone === null ? this.state.value : this.state.phone} onChange={this.handleChange} />
                         </li> 
                     </ul>
                     <ul>
                         <li>
-                            <p className="heading">Map Link: </p>
+                            <p className="heading">Website: </p>
                         </li>
                         <li>
-                            <textarea name="map_link" rows="5" className="textarea-s" placeholder="tip: copy and paste from google maps" value={this.state.map_link === null ? this.state.value : this.state.map_link} onChange={this.handleChange} />
-                        </li> 
+                            <input type="text" name="website" value={this.state.website === null ? this.state.value : this.state.website} onChange={this.handleChange} />
+                        </li>  
                     </ul>
                     <ul>
                         <li>
                             <input type="button" className="buttons" value="Cancel" />
                         </li>
                         <li className="button-end">
-                        <input type="submit" className="buttons" value={this.state.project_site_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
+                        <input type="submit" className="buttons" value={this.state.company_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
                         </li>
                     </ul>
                 </section>
@@ -101,4 +123,4 @@ class ProjectSite extends React.Component {
     }
 }
 
-export default ProjectSite
+export default Vendor

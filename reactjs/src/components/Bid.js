@@ -52,7 +52,7 @@ class Bid extends React.Component {
         return (
             <main>
                 <section className="add-new">
-                    <h6>{this.props.title}: Add New</h6>
+                    <h6>{this.props.title}: {this.state.bid_id === null ? "Add New" : "Update Record"}</h6>
                     <ul>
                         <li>
                             <p className="heading">Bid #: </p>
@@ -153,7 +153,7 @@ class Bid extends React.Component {
                             <input type="button" className="buttons" value="Cancel" />
                         </li>
                         <li className="button-end">
-                            <input type="submit" className="buttons" value="Add" onClick={this.handleSubmit} />
+                            <input type="submit" className="buttons" value={this.state.bid_id === null ? "Add" : "Update"} onClick={this.handleSubmit} />
                         </li>
                     </ul>
                 </section>

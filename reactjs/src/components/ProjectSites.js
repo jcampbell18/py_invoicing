@@ -3,6 +3,10 @@ import img_view from '../img/icons/32x32/view.png'
 
 class ProjectSites extends React.Component {
 
+    onView = (project_site) => {
+        this.props.onDataSelection("Project Site", project_site);
+    }
+
     render() { 
 
         return (
@@ -48,7 +52,7 @@ class ProjectSites extends React.Component {
                                     <p>{project_site.access_code}</p>
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(project_site)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>

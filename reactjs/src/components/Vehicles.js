@@ -2,6 +2,11 @@ import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
 class Vehicles extends React.Component {
+
+    onView = (vehicle) => {
+        this.props.onDataSelection("Vehicle", vehicle);
+    }
+
     render() { 
         return (
             <main>
@@ -46,7 +51,7 @@ class Vehicles extends React.Component {
                                     <p>{vehicle.notes}</p>
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(vehicle)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>
