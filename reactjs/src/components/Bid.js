@@ -1,7 +1,7 @@
 import React from 'react'
 import Moment from 'moment'
 
-class Bid extends React.Component {
+class Bid extends React.Component { 
 
     state = {
         bid_id: this.props.data.bid_id || null,
@@ -46,8 +46,6 @@ class Bid extends React.Component {
     }
 
     render() {  
-
-        // let 
 
         return (
             <main>
@@ -110,11 +108,11 @@ class Bid extends React.Component {
                         <li>
                             <select name="sku_id" value={this.state.sku_id === null ? this.state.value : this.state.sku_id} onChange={this.handleChange} >
                                 { 
-                                    this.state.project_site_id === null ? <option defaultValue value="">select a sku</option> : null
+                                    this.state.sku_id === null ? <option defaultValue value="">select a sku</option> : null
                                 }
                                 {
-                                    this.props.sku.map(sk =>
-                                        <option value={sk.sku_id} key={sk.sku_id}>{sk.name}</option>
+                                    this.props.skus.map(sku =>
+                                        <option value={sku.sku_id} key={sku.sku_id}>{sku.name}</option>
                                     )
                                 }
                             </select>

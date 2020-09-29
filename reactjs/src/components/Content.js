@@ -1,5 +1,4 @@
 import React from 'react'
-
 import './Core/Main.css'
 
 class Content extends React.Component {

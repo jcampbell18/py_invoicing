@@ -67,8 +67,8 @@ class SubNav extends React.Component {
                         </li>                       
                         <li>
                             <a href="/#" onClick={this.onSubMenuSelection}>
-                                <img src={img_mileage} alt="Mileages" title="Mileage"/>
-                                <h6>Mileage</h6>
+                                <img src={img_mileage} alt="Mileages" title="Mileages"/>
+                                <h6>Mileages</h6>
                             </a>
                         </li>
                         <li>
@@ -137,6 +137,33 @@ class SubNav extends React.Component {
                             </li>
                         </ol>
                     );
+            case "Project Site":
+            case "Invoice":
+            case "Bid":
+            case "Mileage":
+            case "Expense":
+            case "Client":
+            case "Vendor":
+            case "Expense Category":
+            case "Sku":
+            case "Term":
+            case "Vehicle":
+                return (
+                    <ol>
+                        <li>
+                            <a href="/#" onClick={this.onSubMenuSelection}>
+                                <img src={img_back} alt="Back" title="Back"/>
+                                <h6>Back</h6>
+                            </a>
+                        </li>
+                        {/* <li>
+                            <a href="/#" onClick={this.onAdd}>
+                                <img src={img_add} alt="Add New" title="Add New"/>
+                                <h6>Add</h6>
+                            </a>
+                        </li> */}
+                    </ol>
+                );
             default:
                 return (
                     <ol>

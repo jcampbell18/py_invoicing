@@ -13,6 +13,8 @@ import Bids from './components/Bids'
 import Bid from './components/Bid'
 
 import Mileages from './components/Mileages'
+import Mileage from './components/Mileage'
+
 import Expenses from './components/Expenses'
 import Reports from './components/Reports'
 
@@ -117,9 +119,11 @@ class App extends React.Component {
             case 'Bids':
                 return <Bids bids={this.state.bids} onDataSelection={this.onDataSelection} />
             case 'Bid':
-                return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} data={this.state.data} />
+                return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} skus={this.state.skus} data={this.state.data} />
             case 'Mileages':
                 return <Mileages mileages={this.state.mileages} onDataSelection={this.onDataSelection} />
+            case 'Mileage':
+                return <Mileage title={this.state.subnav} vehicles={this.state.vehicles} project_sites={this.state.project_sites} invoices={this.state.invoices} data={this.state.data} />
             case 'Expenses':
                 return <Expenses expenses={this.state.expenses} onDataSelection={this.onDataSelection} />
             case 'Reports':
@@ -278,7 +282,7 @@ class App extends React.Component {
     }
 
     getMileages() {
-        fetch('http://localhost:5000/api/mileage', {
+        fetch('http://localhost:5000/api/mileages', {
             method: "GET"
         }).then(response => {
             return response.json();

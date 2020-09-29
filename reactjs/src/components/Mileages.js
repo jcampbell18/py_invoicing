@@ -2,6 +2,11 @@ import React from 'react'
 import img_view from '../img/icons/32x32/view.png'
 
 class Mileages extends React.Component {
+
+    onView = (mileage) => {
+        this.props.onDataSelection("Mileage", mileage);
+    }
+
     render() {
         return (
             <main>
@@ -28,25 +33,25 @@ class Mileages extends React.Component {
                         </li>
                     </ul>
                     {  
-                        this.props.mileage.map(mile =>
-                            <ul className="ul-lines" key={mile.mileage_id}>
+                        this.props.mileages.map(mileage =>
+                            <ul className="ul-lines" key={mileage.mileage_id}>
                                 <li>
-                                    <p>{mile.drive_date}</p>
+                                    <p>{mileage.drive_date}</p>
                                 </li>
                                 <li>
-                                    <p>{mile.address}, {mile.city}, {mile.state} {mile.zipcode}</p>
+                                    <p>{mileage.address}, {mileage.city}, {mileage.state} {mileage.zipcode}</p>
                                 </li>
                                 <li>
-                                    <p>{mile.start_mileage}</p>
+                                    <p>{mileage.start_mileage}</p>
                                 </li>
                                 <li>
-                                    <p>{mile.end_mileage}</p>
+                                    <p>{mileage.end_mileage}</p>
                                 </li>
                                 <li>
-                                    <p>{mile.subtotal}</p>
+                                    <p>{mileage.subtotal}</p>
                                 </li>
                                 <li>
-                                    <a href="/#">
+                                    <a href="/#" onClick={() => this.onView(mileage)}>
                                         <img src={img_view} alt="View" title="View"/>
                                     </a>
                                 </li>

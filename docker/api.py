@@ -53,6 +53,20 @@ def BidsById():
    else:
        return errorMessage
 
+@app.route('/api/bids', methods=['POST'])
+def BidsAddNew():
+   sql = "INSERT INTO bids (company_id, project_site_id, sku_id, bid_date, description, amount, approve, denied) VALUES (" + request.args['company_id'] + ", " + request.args['project_site_id'] + ", " + request.args['sku_id'] + ", " + request.args['bid_date'] + ", " + request.args['description'] + ", " + request.args['amount'] + ", " + request.args['approve'] + ", " + request.args['denied'] + ")"
+   print("sql: " + sql)
+   return AddResult(sql)
+
+@app.route('/api/bids/id', methods=['PUT'])
+def BidsUpdateById():
+   if 'id' in request.args:
+      sql = "UPDATE bids SET company_id=" + request.args['company_id'] + ", " + "project_site_id=" + request.args['project_site_id'] + ", " + "sku_id=" + request.args['sku_id'] + ", " + "description=" + request.args['description'] + ", " + "amount=" + request.args['amount'] + ", " + "approve=" + request.args['approve'] + ", " + "denied=" + request.args['denied'] + "WHERE bid_id=" + request.args['id']
+      print("sql: " + sql)
+   else:
+       return errorMessage
+
 @app.route('/api/changelogs', methods=['GET'])
 def Changelogs():
    sql = "SELECT c.changelog_id, c.changelog_category_id, l.name, c.timestamp, c.description, c.complete FROM changelogs AS c, changelog_categories AS l WHERE c.changelog_category_id=l.changelog_category_id ORDER BY c.changelog_id"
@@ -117,7 +131,7 @@ def CompanyCategoriesById():
 
 @app.route('/api/expenses', methods=['GET'])
 def Expenses():
-   sql = "SELECT e.expense_id, e.invoice_id, e.company_id, c.business_name, e.expense_category_id, ec.name AS expense_catagory, e.name, e.vehicle_id, v.man_year, v.make, v.model, e.pdate, e.name, e.quantity, CAST(e.amount AS CHAR) AS amount, CAST(e.subtotal AS CHAR) AS subtotal, e.tax_included, CAST(e.tax AS CHAR) AS tax, CAST(e.total AS CHAR) AS total, e.receipt_reference, e.receipt_image FROM expenses AS e, invoices AS i, companies AS c, expense_categories AS ec, vehicles AS v WHERE e.invoice_id=i.invoice_id AND e.company_id=c.company_id AND e.expense_category_id=ec.expense_category_id AND e.vehicle_id=v.vehicle_id ORDER BY e.expense_id"
+   sql = "SELECT e.expense_id, e.invoice_id, e.company_id, c.business_name, e.expense_category_id, ec.name AS expense_category, e.name, e.vehicle_id, v.man_year, v.make, v.model, e.pdate, e.name, e.quantity, CAST(e.amount AS CHAR) AS amount, CAST(e.subtotal AS CHAR) AS subtotal, e.tax_included, CAST(e.tax AS CHAR) AS tax, CAST(e.total AS CHAR) AS total, e.receipt_reference, e.receipt_image FROM expenses AS e, invoices AS i, companies AS c, expense_categories AS ec, vehicles AS v WHERE e.invoice_id=i.invoice_id AND e.company_id=c.company_id AND e.expense_category_id=ec.expense_category_id AND e.vehicle_id=v.vehicle_id ORDER BY e.expense_id"
    return GetResults(sql)
 
 @app.route('/api/expenses/id', methods=['GET'])
@@ -156,13 +170,13 @@ def InvoicesById():
    else:
        return errorMessage
 
-@app.route('/api/mileage', methods=['GET'])
-def Mileage():
+@app.route('/api/mileages', methods=['GET'])
+def Mileages():
    sql = "SELECT m.mileage_id, m.project_site_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, m.vehicle_id, v.man_year, v.make, v.model, m.invoice_id1, m.invoice_id2, m.invoice_id3, m.drive_date, m.start_mileage, m.end_mileage, m.subtotal, m.notes FROM mileage AS m, project_sites AS p, vehicles AS v, states AS s WHERE m.project_site_id=p.project_site_id AND p.state_id=s.state_id AND m.vehicle_id=v.vehicle_id ORDER BY m.mileage_id"
    return GetResults(sql)
 
-@app.route('/api/mileage/id', methods=['GET'])
-def MileageById():
+@app.route('/api/mileages/id', methods=['GET'])
+def MileagesById():
    if 'id' in request.args:
       sql = "SELECT m.mileage_id, m.project_site_id, p.address, p.city, p.state_id, s.name AS state, p.zipcode, m.vehicle_id, v.man_year, v.make, v.model, m.invoice_id1, m.invoice_id2, m.invoice_id3, m.drive_date, m.start_mileage, m.end_mileage, m.subtotal, m.notes FROM mileage AS m, project_sites AS p, vehicles AS v, states AS s WHERE m.project_site_id=p.project_site_id AND p.state_id=s.state_id AND m.vehicle_id=v.vehicle_id AND m.mileage_id=" + request.args['id']
       return GetResults(sql)
@@ -278,15 +292,22 @@ def dateSerializer(d):
       return "{}-{}-{}".format(d.month, d.day, d.year)
 
 def GetResults(sql):
-   conn = mariadb.connect(**config)
-   cur = conn.cursor()
-   cur.execute(sql)
-   row_headers=[x[0] for x in cur.description]
-   rv = cur.fetchall()
+   connection = mariadb.connect(**config)
+   cursor = connection.cursor()
+   cursor.execute(sql)
+   row_headers=[x[0] for x in cursor.description]
+   rv = cursor.fetchall()
    json_data=[]
    for result in rv:
         json_data.append(dict(zip(row_headers,result)))
 
    return json.dumps(json_data, default = dateSerializer)
+
+def AddResult(sql):
+   connection = mariadb.connect(**config)
+   cursor = connection.cursor()
+   cursor.execute(sql)
+   connection.commit()
+
 
 app.run()
