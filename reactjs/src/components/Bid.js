@@ -4,7 +4,7 @@ import Moment from 'moment'
 class Bid extends React.Component { 
 
     state = {
-        bid_id: this.props.data.bid_id || null,
+        bid_id: this.props.data.bid_id || null, 
         company_id: this.props.data.company_id || null,
         project_site_id: this.props.data.project_site_id || null,
         sku_id: this.props.data.sku_id || null,

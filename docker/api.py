@@ -103,6 +103,20 @@ def ClientsById():
    sql = "SELECT c.company_id, c.company_category_id, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.fax, c.email, c.website, c.logo_image FROM companies AS c, states AS s WHERE c.company_id=" + request.args['id'] + "c.company_category_id=1 AND c.state_id=s.state_id"
    return GetResults(sql)
 
+@app.route('/api/clients', methods=['POST'])
+def ClientsAddNew():
+   sql = "INSERT INTO companies (company_category_id, business_name, contact_name, address, city, state_id, zipcode, phone, fax, email) VALUES (" + request.args['company_category_id'] + ", " + request.args['business_name'] + ", " + request.args['contact_name'] + ", " + request.args['address'] + ", " + request.args['city'] + ", " + request.args['state_id'] + ", " + request.args['zipcode'] + ", " + request.args['phone'] + ", " + request.args['fax'] + ", " + request.args['email'] + ")"
+   print("sql: " + sql)
+   return AddResult(sql)
+
+@app.route('/api/clients/id', methods=['PUT'])
+def ClientsUpdateById():
+   if 'id' in request.args:
+      sql = "UPDATE companies SET company_category_id=" + request.args['company_category_id'] + ", " + "business_name=" + request.args['business_name'] + ", " + "contact_name=" + request.args['contact_name'] + ", " + "address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "phone=" + request.args['phone'] + ", " + "fax=" + request.args['fax'] + ", " + "email=" + request.args['email'] + "WHERE bid_id=" + request.args['id']
+      print("sql: " + sql)
+   else:
+       return errorMessage
+
 @app.route('/api/companies', methods=['GET'])
 def Companies():
    sql = "SELECT c.company_id, c.company_category_id, cat.name, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.fax, c.email, c.website, c.logo_image FROM companies AS c, company_categories AS cat, states AS s WHERE c.state_id=s.state_id AND c.company_category_id=cat.company_category_id"
@@ -196,6 +210,20 @@ def ProjectSitesById():
    else:
        return errorMessage
 
+@app.route('/api/project_sites', methods=['POST'])
+def ProjectSitesAddNew():
+   sql = "INSERT INTO project_sites (address, city, state_id, zipcode, access_code, map_link) VALUES (" + request.args['address'] + ", " + request.args['city'] + ", " + request.args['state_id'] + ", " + request.args['zipcode'] + ", " + request.args['access_code'] + ", " + request.args['map_link'] + ")"
+   print("sql: " + sql)
+   return AddResult(sql)
+
+@app.route('/api/project_sites/id', methods=['PUT'])
+def ProjectSitesUpdateById():
+   if 'id' in request.args:
+      sql = "UPDATE project_sites SET address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "access_code=" + request.args['access_code'] + ", " + "map_link=" + request.args['map_link'] + "WHERE bid_id=" + request.args['id']
+      print("sql: " + sql)
+   else:
+       return errorMessage
+
 @app.route('/api/project_sites/', methods=['POST'])
 def ProjectSitesAdd():
    sql = "INSERT INTO project_sites (address, city, state_id, zipcode, access_code, map_link) VALUES(" + request.args['address'] + "," + request.args['city'] + "," + request.args['state_id'] + "," + request.args['zipcdoe'] + "," + request.args['access_code'] + "," + request.args['map_link'] + ")"
@@ -286,6 +314,20 @@ def Vendors():
 def VendorsById():
    sql = "SELECT c.company_id, c.company_category_id, c.business_name, c.contact_name, c.address, c.city, c.state_id, s.name AS state, c.zipcode, c.phone, c.website FROM companies AS c, company_categories AS cat, states AS s WHERE c.company_id=" + request.args['id'] + "c.company_category_id=2 AND c.state_id=s.state_id"
    return GetResults(sql)
+
+@app.route('/api/vendors', methods=['POST'])
+def VendorsAddNew():
+   sql = "INSERT INTO companies (company_category_id, business_name, contact_name, address, city, state_id, zipcode, phone, fax, email, website) VALUES (" + request.args['company_category_id'] + ", " + request.args['business_name'] + ", " + request.args['contact_name'] + ", " + request.args['address'] + ", " + request.args['city'] + ", " + request.args['state_id'] + ", " + request.args['zipcode'] + ", " + request.args['phone'] + ", " + request.args['fax'] + ", " + request.args['email'] + ", " + request.args['website'] + ")"
+   print("sql: " + sql)
+   return AddResult(sql)
+
+@app.route('/api/vendors/id', methods=['PUT'])
+def VendorsUpdateById():
+   if 'id' in request.args:
+      sql = "UPDATE companies SET company_category_id=" + request.args['company_category_id'] + ", " + "business_name=" + request.args['business_name'] + ", " + "contact_name=" + request.args['contact_name'] + ", " + "address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "phone=" + request.args['phone'] + ", " + "fax=" + request.args['fax'] + ", " + "email=" + request.args['email'] + ", " + "website=" + request.args['website'] + "WHERE bid_id=" + request.args['id']
+      print("sql: " + sql)
+   else:
+       return errorMessage
 
 def dateSerializer(d):
    if isinstance(d, datetime.date):
