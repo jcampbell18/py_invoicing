@@ -4,15 +4,14 @@ import Moment from 'moment'
 class Bid extends React.Component { 
 
     state = {
-        bid_id: this.props.data.bid_id || null, 
+        bid_id: this.props.data.bid_id || null,
         company_id: this.props.data.company_id || null,
         project_site_id: this.props.data.project_site_id || null,
         sku_id: this.props.data.sku_id || null,
         bid_date: this.props.data.bid_date || null,
         description: this.props.data.description || null,
         amount: this.props.data.amount || 0.00,
-        approve: this.props.data.approve || 0,
-        denied: this.props.data.denied || 0,
+        bid_status_id: this.props.data.bid_status_id || 1
     }
 
     handleChange = (e) => {
@@ -139,12 +138,14 @@ class Bid extends React.Component {
                             <p className="heading">Status: </p>
                         </li>
                         <li>
-                            <select name="status" value={this.state.value} onChange={this.handleChange} >
-                                <option value="waiting" defaultValue>Waiting</option>
-                                <option value="approved">Approved</option>
-                                <option value="denied">Denied/Expired</option>
+                            <select name="bid_status_id" value={this.state.bid_status_id === null ? this.state.value : this.state.bid_status_id} onChange={this.handleChange} >
+                                {
+                                    this.props.bid_statuses.map(bid_status =>
+                                        <option value={bid_status.bid_status_id} key={bid_status.bid_status_id}>{bid_status.name}</option>
+                                    )
+                                } 
                             </select>
-                        </li> 
+                        </li>
                     </ul>
                     <ul>
                         <li>

@@ -59,7 +59,7 @@ class Bids extends React.Component {
                                     <p>${bid.amount}</p>
                                 </li>
                                 <li>
-                                    {bid.approve === 1 ? <img src={img_checkmark} alt="Approved" title="Approved" /> : <p>&nbsp;</p> }
+                                    {bid.bid_status_id === 2 ?  <img src={img_checkmark} alt="Approved" title="Approved" /> : <p>&nbsp;</p> }
                                 </li>
                                 <li>
                                     <a href="/#" onClick={() => this.onView(bid)}>

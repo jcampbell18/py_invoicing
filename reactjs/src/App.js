@@ -16,6 +16,8 @@ import Mileages from './components/Mileages'
 import Mileage from './components/Mileage'
 
 import Expenses from './components/Expenses'
+import Expense from './components/Expense'
+
 import Reports from './components/Reports'
 
 import Content from './components/Content'
@@ -59,6 +61,7 @@ class App extends React.Component {
 
         clients: {},
         vendors: {},
+        bid_status: {},
         expense_categories: {},
         skus: {},       
         terms: {},
@@ -104,6 +107,16 @@ class App extends React.Component {
         );
     }
 
+    resetDataState() {
+        const data = this.state.data ===  null ? {} : this.state.data;
+        this.setState(
+            {
+                data: null,
+            }
+        );
+        return data;
+    }
+
     getPage() {
         switch(this.state.subnav) {
             case 'Dashboard':
@@ -111,21 +124,23 @@ class App extends React.Component {
             case 'Project Sites':
                 return <ProjectSites project_sites={this.state.project_sites} onDataSelection={this.onDataSelection} />
             case 'Project Site':
-                return <ProjectSite title={this.state.subnav} states={this.state.states} data={this.state.data} />
+                return <ProjectSite title={this.state.subnav} states={this.state.states} data={this.state.data === null ? {} : this.state.data} />
             case 'Invoices':
                 return <Invoices invoices={this.state.invoices} onDataSelection={this.onDataSelection} />
             case 'Invoice':
-                return <Invoice title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} data={this.state.data} bids={this.state.bids} />
+                return <Invoice title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} sku={this.state.sku} data={this.state.data === null ? {} : this.state.data} bids={this.state.bids} />
             case 'Bids':
-                return <Bids bids={this.state.bids} onDataSelection={this.onDataSelection} />
+                return <Bids bids={this.state.bids} bid_status={this.state.bid_status} onDataSelection={this.onDataSelection} />
             case 'Bid':
-                return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} skus={this.state.skus} data={this.state.data} />
+                return <Bid title={this.state.subnav} clients={this.state.clients} project_sites={this.state.project_sites} skus={this.state.skus} bid_statuses={this.state.bid_status} data={this.state.data === null ? {} : this.state.data} />
             case 'Mileages':
                 return <Mileages mileages={this.state.mileages} onDataSelection={this.onDataSelection} />
             case 'Mileage':
-                return <Mileage title={this.state.subnav} vehicles={this.state.vehicles} project_sites={this.state.project_sites} invoices={this.state.invoices} data={this.state.data} />
+                return <Mileage title={this.state.subnav} vehicles={this.state.vehicles} project_sites={this.state.project_sites} invoices={this.state.invoices} data={this.state.data === null ? {} : this.state.data} />
             case 'Expenses':
                 return <Expenses expenses={this.state.expenses} onDataSelection={this.onDataSelection} />
+            case 'Expense':
+                return <Expense title={this.state.subnav} clients={this.state.clients} invoices={this.state.invoices} vehicles={this.state.vehicles} expense_categories={this.state.expense_categories} data={this.state.data === null ? {} : this.state.data} />
             case 'Reports':
                 return <Reports onDataSelection={this.onDataSelection} />
 
@@ -134,27 +149,27 @@ class App extends React.Component {
             case 'Clients':
                 return <Clients clients={this.state.clients} onDataSelection={this.onDataSelection} />
             case 'Client':
-                return <Client title={this.state.subnav} states={this.state.states} data={this.state.data} />
+                return <Client title={this.state.subnav} states={this.state.states} data={this.state.data === null ? {} : this.state.data} />
             case 'Vendors':
                 return <Vendors vendors={this.state.vendors} onDataSelection={this.onDataSelection} />
             case 'Vendor':
-                return <Vendor title={this.state.subnav} states={this.state.states} data={this.state.data} />
+                return <Vendor title={this.state.subnav} states={this.state.states} data={this.state.data === null ? {} : this.state.data} />
             case 'Expense Categories':
                 return <ExpenseCategories expense_categories={this.state.expense_categories} onDataSelection={this.onDataSelection} />
             case 'Expense Category':
-                return <ExpenseCategory title={this.state.subnav} data={this.state.data} />
+                return <ExpenseCategory title={this.state.subnav} data={this.state.data === null ? {} : this.state.data} />
             case 'Skus':
                 return <Skus skus={this.state.skus} onDataSelection={this.onDataSelection} />
             case 'Sku':
-                return <Sku title={this.state.subnav} data={this.state.data} />
+                return <Sku title={this.state.subnav} data={this.state.data === null ? {} : this.state.data} />
             case 'Terms':
                 return <Terms terms={this.state.terms} onDataSelection={this.onDataSelection} />
             case 'Term':
-                return <Term title={this.state.subnav} data={this.state.data} />
+                return <Term title={this.state.subnav} data={this.state.data === null ? {} : this.state.data} />
             case 'Vehicles':
                 return <Vehicles vehicles={this.state.vehicles} onDataSelection={this.onDataSelection} />
             case 'Vehicle':
-                return <Vehicle title={this.state.subnav} data={this.state.data} />
+                return <Vehicle title={this.state.subnav} data={this.state.data === null ? {} : this.state.data} />
 
             case 'Users':
                 return <Users />
@@ -167,6 +182,7 @@ class App extends React.Component {
     }
 
     getData() {
+        this.getBidStatus();
         this.getBids();
         this.getChangelogs();
         this.getChangelogCategories();
@@ -181,6 +197,20 @@ class App extends React.Component {
         this.getVehicles();
         this.getVendors();
         this.getStates();
+    }
+
+    getBidStatus() {
+        fetch('http://localhost:5000/api/bid_status', {
+            method: "GET"
+        }).then(response => {
+            return response.json();
+        }).then(result => {
+            this.setState(
+                {
+                    bid_status: result
+                }
+            );
+        });
     }
 
     getBids() {

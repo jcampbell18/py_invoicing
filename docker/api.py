@@ -40,38 +40,72 @@ def access_level_by_id():
 #    sql = "SELECT access_level_id, name, description FROM access_levels WHERE access_level_id=" + id
 #    return get_results(sql)
 
+@app.route('/api/bid_status', methods=['GET'])
+def bid_status():
+   sql = "SELECT bid_status_id, name FROM bid_status ORDER BY bid_status_id"
+   return get_results(sql)
+   
+
+@app.route('/api/bid_status/id', methods=['GET'])
+def bid_status_by_id():
+   if 'id' in request.args:
+      sql = "SELECT bid_status_id, name FROM bid_status WHERE bid_status_id=" + request.args['id']
+      return get_results(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/bid_status', methods=['POST'])
+def bid_status_add():
+   sql = "INSERT INTO bid_status (name) VALUES (" + request.args['name'] + ")"
+   return send_result(sql)
+
+@app.route('/api/bid_status/id', methods=['PUT'])
+def bid_status_update():
+   if 'id' in request.args:
+      sql = "UPDATE bid_status SET name=" + request.args['name'] + " WHERE bid_status_id=" + request.args['id']
+      return send_result(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/bid_status/id', methods=['DELETE'])
+def bid_status_delete():
+   if 'id' in request.args:
+      sql = "DELETE FROM bid_status WHERE bid_status_id=" + request.args['id']
+      send_result(sql)
+   else:
+       return errorMessage
+
 @app.route('/api/bids', methods=['GET'])
 def bids():
-   sql = "SELECT b.bid_id, b.company_id, c.business_name AS business_name, b.project_site_id, p.address, p.city, p.state_id, s.name AS state, b.sku_id, sk.name AS sku_name, b.bid_date, b.description, CAST(b.amount AS CHAR) AS amount, b.approve, b.denied FROM bids AS b, companies AS c, project_sites AS p, sku AS sk, states AS s WHERE b.company_id=c.company_id AND b.project_site_id=p.project_site_id AND b.sku_id=sk.sku_id AND p.state_id=s.state_id ORDER BY b.bid_id"
+   sql = "SELECT b.bid_id, b.company_id, c.business_name AS business_name, b.project_site_id, p.address, p.city, p.state_id, s.name AS state, b.sku_id, sk.name AS sku_name, b.bid_date, b.description, CAST(b.amount AS CHAR) AS amount, b.bid_status_id FROM bids AS b, companies AS c, project_sites AS p, sku AS sk, states AS s, bid_status AS bs WHERE b.company_id=c.company_id AND b.project_site_id=p.project_site_id AND b.sku_id=sk.sku_id AND p.state_id=s.state_id AND b.bid_status_id=bs.bid_status_id ORDER BY b.bid_id"
    return get_results(sql)
 
 @app.route('/api/bids/id', methods=['GET'])
 def bid_by_id():
    if 'id' in request.args:
-      sql = "SELECT b.bid_id, b.company_id, c.business_name AS business_name, b.project_site_id, p.address, p.city, p.state_id, s.name AS state, b.sku_id, sk.name AS sku_name, b.bid_date, b.description, CAST(b.amount AS CHAR) AS amount, b.approve, b.denied FROM bids AS b, companies AS c, project_sites AS p, sku AS sk, states AS s WHERE b.company_id=c.company_id AND b.project_site_id=p.project_site_id AND b.sku_id=sk.sku_id AND p.state_id=s.state_id AND b.bid_id=" + request.args['id']
+      sql = "SELECT b.bid_id, b.company_id, c.business_name AS business_name, b.project_site_id, p.address, p.city, p.state_id, s.name AS state, b.sku_id, sk.name AS sku_name, b.bid_date, b.description, CAST(b.amount AS CHAR) AS amount, b.bid_status_id FROM bids AS b, companies AS c, project_sites AS p, sku AS sk, states AS s WHERE b.company_id=c.company_id AND b.project_site_id=p.project_site_id AND b.sku_id=sk.sku_id AND p.state_id=s.state_id AND b.bid_status_id=bs.bid_status_id AND b.bid_id=" + request.args['id']
       return get_results(sql)
    else:
        return errorMessage
 
 @app.route('/api/bids', methods=['POST'])
 def bid_add():
-   sql = "INSERT INTO bids (company_id, project_site_id, sku_id, bid_date, description, amount, approve, denied) VALUES (" + request.args['company_id'] + ", " + request.args['project_site_id'] + ", " + request.args['sku_id'] + ", " + request.args['bid_date'] + ", " + request.args['description'] + ", " + request.args['amount'] + ", " + request.args['approve'] + ", " + request.args['denied'] + ")"
-   send_result(sql)
+   sql = "INSERT INTO bids (company_id, project_site_id, sku_id, bid_date, description, amount, bid_status_id) VALUES (" + request.args['company_id'] + ", " + request.args['project_site_id'] + ", " + request.args['sku_id'] + ", " + request.args['bid_date'] + ", " + request.args['description'] + ", " + request.args['amount'] + ", " + request.args['bid_status_id'] + ")"
    return send_result(sql)
 
 @app.route('/api/bids/id', methods=['PUT'])
 def bid_update():
    if 'id' in request.args:
-      sql = "UPDATE bids SET company_id=" + request.args['company_id'] + ", " + "project_site_id=" + request.args['project_site_id'] + ", " + "sku_id=" + request.args['sku_id'] + ", " + "description=" + request.args['description'] + ", " + "amount=" + request.args['amount'] + ", " + "approve=" + request.args['approve'] + ", " + "denied=" + request.args['denied'] + " WHERE bid_id=" + request.args['id']
-      send_result(sql)
+      sql = "UPDATE bids SET company_id=" + request.args['company_id'] + ", project_site_id=" + request.args['project_site_id'] + ", sku_id=" + request.args['sku_id']+ ", bid_date=" + request.args['bid_date']  + ", description=" + request.args['description'] + ", amount=" + request.args['amount'] + ", bid_status_id=" + request.args['bid_status_id'] + " WHERE bid_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
-@app.route('/api/bids/', methods=['DELETE'])
+@app.route('/api/bids/id', methods=['DELETE'])
 def bid_delete():
    if 'id' in request.args:
       sql = "DELETE FROM bids WHERE bid_id=" + request.args['id']
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -114,22 +148,21 @@ def client_by_id():
 @app.route('/api/clients', methods=['POST'])
 def client_add():
    sql = "INSERT INTO companies (company_category_id, business_name, contact_name, address, city, state_id, zipcode, phone, fax, email) VALUES (" + request.args['company_category_id'] + ", " + request.args['business_name'] + ", " + request.args['contact_name'] + ", " + request.args['address'] + ", " + request.args['city'] + ", " + request.args['state_id'] + ", " + request.args['zipcode'] + ", " + request.args['phone'] + ", " + request.args['fax'] + ", " + request.args['email'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/clients/id', methods=['PUT'])
 def client_update():
    if 'id' in request.args:
       sql = "UPDATE companies SET company_category_id=" + request.args['company_category_id'] + ", business_name=" + request.args['business_name'] + ", contact_name=" + request.args['contact_name'] + ", address=" + request.args['address'] + ", city=" + request.args['city'] + ", state_id=" + request.args['state_id'] + ", zipcode=" + request.args['zipcode'] + ", phone=" + request.args['phone'] + ", fax=" + request.args['fax'] + ", email=" + request.args['email'] + " WHERE company_id=" + request.args['id']
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
-@app.route('/api/clients', methods=['DELETE'])
+@app.route('/api/clients/id', methods=['DELETE'])
 def client_delete():
    if 'id' in request.args:
       sql = "DELETE FROM companies WHERE company_id=" + request.args['id']
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -170,24 +203,23 @@ def expense_by_id():
    return get_results(sql)
 
 @app.route('/api/expenses', methods=['POST'])
-def project_site_add():
+def expense_add():
    sql = "INSERT INTO expenses (invoice_id, company_id, expense_category_id, vehicle_id, pdate, name, quantity, amount, subtotal, tax_included, tax, total, receipt_reference, receipt_image) VALUES (" + request.args['invoice_id'] + ", " + request.args['company_id'] + ", " + request.args['expense_category_id'] + ", " + request.args['vehicle_id'] + ", " + request.args['pdate'] + ", " + request.args['name'] + ", " + request.args['quantity'] + ", " + request.args['amount'] + ", " + request.args['subtotal'] + ", " + request.args['tax_included'] + ", " + request.args['tax'] + ", " + request.args['total'] + ", " + request.args['receipt_reference'] + ", " + request.args['receipt_image'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/expenses/id', methods=['PUT'])
-def project_site_update():
+def expense_update():
    if 'id' in request.args:
       sql = "UPDATE expenses SET invoice_id=" + request.args['invoice_id'] + ", company_id=" + request.args['company_id'] + ", expense_category_id=" + request.args['expense_category_id'] + ", vehicle_id=" + request.args['vehicle_id'] + ", pdate=" + request.args['pdate'] + ", name=" + request.args['name'] + ", quantity=" + request.args['quantity'] + ", amount=" + request.args['amount'] + ", subtotal=" + request.args['subtotal'] + ", tax_included=" + request.args['tax_included'] + ", tax=" + request.args['tax'] + ", total=" + request.args['total'] + ", receipt_reference=" + request.args['receipt_reference'] + ", receipt_image=" + request.args['receipt_image'] + " WHERE expense_id=" + request.args['id']
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
-@app.route('/api/expenses', methods=['DELETE'])
-def project_site_delete(index):
+@app.route('/api/expenses/id', methods=['DELETE'])
+def expense_delete():
    if 'id' in request.args:
-      sql = "DELETE FROM expenses WHERE expense_id=" + index
-      send_result(sql)
+      sql = "DELETE FROM expenses WHERE expense_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -201,6 +233,27 @@ def expense_category_by_id():
    if 'id' in request.args:
       sql = "SELECT expense_category_id, name, description FROM expense_categories WHERE expense_category_id=" + request.args['id']
       return get_results(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/expense_categories', methods=['POST'])
+def expense_category_add():
+   sql = "INSERT INTO expense_categories (name, description) VALUES (" + request.args['name'] + ", " + request.args['description'] + ")"
+   return send_result(sql)
+
+@app.route('/api/expense_categories/id', methods=['PUT'])
+def expense_category_update():
+   if 'id' in request.args:
+      sql = "UPDATE invoices SET name=" + request.args['name'] + ", description=" + request.args['description'] + " WHERE expense_category_id=" + request.args['id']
+      return send_result(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/expense_categories/id', methods=['DELETE'])
+def expense_category_delete():
+   if 'id' in request.args:
+      sql = "DELETE FROM expense_categories WHERE expense_category_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -223,24 +276,23 @@ def invoices_by_id():
        return errorMessage
 
 @app.route('/api/invoices', methods=['POST'])
-def project_site_add():
+def invoice_add():
    sql = "INSERT INTO invoices (company_id, sku_id, project_site_id, bid_id, term_id, start_date, end_date, description, amount, receipts, images, image_links, mileage_id, loan_amount, loan_paid, interest_amount, interest_paid, complete, paid, paid_checknum, paid_date, project_cost, save_tax, actual_net) VALUES (" + request.args['company_id'] + ", " + request.args['sku_id'] + ", " + request.args['project_site_id'] + ", " + request.args['bid_id'] + ", " + request.args['term_id'] + ", " + request.args['start_date'] + ", " + request.args['end_date'] + ", " + request.args['description'] + ", " + request.args['amount'] + ", " + request.args['receipts'] + ", " + request.args['images'] + ", " + request.args['image_links'] + ", " + request.args['mileage_id'] + ", " + request.args['loan_amount'] + ", " + request.args['loan_paid'] + ", " + request.args['interest_amount'] + ", " + request.args['interest_paid'] + ", " + request.args['complete'] + ", " + request.args['paid'] + ", " + request.args['paid_checknum'] + ", " + request.args['paid_date'] + ", " + request.args['project_cost'] + ", " + request.args['save_tax'] + ", " + request.args['actual_net'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/invoices/id', methods=['PUT'])
-def project_site_update():
+def invoice_update():
    if 'id' in request.args:
-      sql = "UPDATE invoices SET company_id=" + request.args['company_id'] + ", sku_id=" + request.args['sku_id'] + ", project_site_id=" + request.args['project_site_id'] + ", bid_id=" + request.args['bid_id'] + ", term_id=" + request.args['term_id'] + ", start_date=" + request.args['start_date'] + ", end_date=" + request.args['end_date'] + ", description=" + request.args['description'] + ", amount=" + request.args['amount'] + ", receipts=" + request.args['receipts'] + ", images=" + request.args['images'] + ", image_links=" + request.args['image_links'] + ", mileage_id=" + request.args['mileage_id'] + ", loan_amount=" + request.args['loan_amount'] + ", loan_paid=" + request.args['loan_paid'] + ", interest_amount=" + request.args['interest_amount'] + ", interest_paid=" + request.args['interest_paid'] + ", complete=" + request.args['complete'] + ", paid=" + request.args['paid'] + ", paid_checknum=" + request.args['paid_checknum'] + ", paid_date=" + request.args['paid_date'] + ", project_cost=" + request.args['project_cost'] + ", save_tax=" + request.args['save_tax'] + ", actual_net=" + request.args['actual_net'] + "WHERE invoice_id=" + request.args['id']
-      send_result(sql)
+      sql = "UPDATE invoices SET company_id=" + request.args['company_id'] + ", sku_id=" + request.args['sku_id'] + ", project_site_id=" + request.args['project_site_id'] + ", bid_id=" + request.args['bid_id'] + ", term_id=" + request.args['term_id'] + ", start_date=" + request.args['start_date'] + ", end_date=" + request.args['end_date'] + ", description=" + request.args['description'] + ", amount=" + request.args['amount'] + ", receipts=" + request.args['receipts'] + ", images=" + request.args['images'] + ", image_links=" + request.args['image_links'] + ", mileage_id=" + request.args['mileage_id'] + ", loan_amount=" + request.args['loan_amount'] + ", loan_paid=" + request.args['loan_paid'] + ", interest_amount=" + request.args['interest_amount'] + ", interest_paid=" + request.args['interest_paid'] + ", complete=" + request.args['complete'] + ", paid=" + request.args['paid'] + ", paid_checknum=" + request.args['paid_checknum'] + ", paid_date=" + request.args['paid_date'] + ", project_cost=" + request.args['project_cost'] + ", save_tax=" + request.args['save_tax'] + ", actual_net=" + request.args['actual_net'] + " WHERE invoice_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
-@app.route('/api/invoices', methods=['DELETE'])
-def project_site_delete(index):
+@app.route('/api/invoices/id', methods=['DELETE'])
+def invoice_delete(index):
    if 'id' in request.args:
       sql = "DELETE FROM invoices WHERE invoice_id=" + index
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -258,24 +310,23 @@ def mileage_by_id():
        return errorMessage
 
 @app.route('/api/mileages', methods=['POST'])
-def project_site_add():
+def mileage_add():
    sql = "INSERT INTO mileages (project_site_id, vehicle_id, invoice_id1, invoice_id2, invoice_id3, drive_date, start_mileage, end_mileage, subtotal, notes) VALUES (" + request.args['project_site_id'] + ", " + request.args['vehicle_id'] + ", " + request.args['invoice_id1'] + ", " + request.args['invoice_id2'] + ", " + request.args['invoice_id3'] + ", " + request.args['drive_date'] + ", " + request.args['start_mileage'] + ", " + request.args['end_mileage'] + ", " + request.args['subtotal'] + ", " + request.args['notes'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/mileages/id', methods=['PUT'])
-def project_site_update():
+def mileage_update():
    if 'id' in request.args:
-      sql = "UPDATE mileages SET project_site_id=" + request.args['project_site_id'] + ", vehicle_id=" + request.args['vehicle_id'] + ", invoice_id1=" + request.args['invoice_id1'] + ", invoice_id2=" + request.args['invoice_id2'] + ", invoice_id3=" + request.args['invoice_id3'] + ", drive_date=" + request.args['drive_date'] + ", start_mileage=" + request.args['start_mileage'] + ", end_mileage=" + request.args['end_mileage'] + ", subtotal=" + request.args['subtotal'] + ", notes=" + request.args['notes'] + "WHERE mileage_id=" + request.args['id']
-      send_result(sql)
+      sql = "UPDATE mileages SET project_site_id=" + request.args['project_site_id'] + ", vehicle_id=" + request.args['vehicle_id'] + ", invoice_id1=" + request.args['invoice_id1'] + ", invoice_id2=" + request.args['invoice_id2'] + ", invoice_id3=" + request.args['invoice_id3'] + ", drive_date=" + request.args['drive_date'] + ", start_mileage=" + request.args['start_mileage'] + ", end_mileage=" + request.args['end_mileage'] + ", subtotal=" + request.args['subtotal'] + ", notes=" + request.args['notes'] + " WHERE mileage_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
-@app.route('/api/mileages', methods=['DELETE'])
-def project_site_delete(index):
+@app.route('/api/mileages/id', methods=['DELETE'])
+def mileage_delete(index):
    if 'id' in request.args:
       sql = "DELETE FROM mileages WHERE mileage_id=" + index
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -295,22 +346,21 @@ def project_site_by_id():
 @app.route('/api/project_sites', methods=['POST'])
 def project_site_add():
    sql = "INSERT INTO project_sites (address, city, state_id, zipcode, access_code, map_link) VALUES (" + request.args['address'] + ", " + request.args['city'] + ", " + request.args['state_id'] + ", " + request.args['zipcode'] + ", " + request.args['access_code'] + ", " + request.args['map_link'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/project_sites/id', methods=['PUT'])
 def project_site_update():
    if 'id' in request.args:
-      sql = "UPDATE project_sites SET address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "access_code=" + request.args['access_code'] + ", " + "map_link=" + request.args['map_link'] + "WHERE bid_id=" + request.args['id']
-      send_result(sql)
+      sql = "UPDATE project_sites SET address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "access_code=" + request.args['access_code'] + ", " + "map_link=" + request.args['map_link'] + " WHERE bid_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
-@app.route('/api/project_sites/', methods=['DELETE'])
-def project_site_delete(index):
+@app.route('/api/project_sites/id', methods=['DELETE'])
+def project_site_delete():
    if 'id' in request.args:
-      sql = "DELETE FROM project_sites WHERE project_site_id=" + index
-      send_result(sql)
+      sql = "DELETE FROM project_sites WHERE project_site_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -319,11 +369,32 @@ def skus():
    sql = "SELECT sku_id, name, description FROM sku"
    return get_results(sql)
 
-@app.route('/api/sku/id', methods=['GET'])
+@app.route('/api/skus/id', methods=['GET'])
 def sku_by_id():
    if 'id' in request.args:
       sql = "SELECT sku_id, name, description FROM sku WHERE sku_id=" + request.args['id']
       return get_results(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/skus', methods=['POST'])
+def sku_add():
+   sql = "INSERT INTO skus (name, description) VALUES (" + request.args['name'] + ", " + request.args['description'] + ")"
+   return send_result(sql)
+
+@app.route('/api/skus/id', methods=['PUT'])
+def sku_update():
+   if 'id' in request.args:
+      sql = "UPDATE skus SET name=" + request.args['name'] + ", description=" + request.args['description'] + " WHERE sku_id=" + request.args['id']
+      return send_result(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/skus/id', methods=['DELETE'])
+def sku_delete():
+   if 'id' in request.args:
+      sql = "DELETE FROM skus WHERE sku_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -354,6 +425,27 @@ def term_by_id():
    else:
        return errorMessage
 
+@app.route('/api/terms', methods=['POST'])
+def term_add():
+   sql = "INSERT INTO terms (name) VALUES (" + request.args['name'] + ")"
+   return send_result(sql)
+
+@app.route('/api/terms/id', methods=['PUT'])
+def term_update():
+   if 'id' in request.args:
+      sql = "UPDATE terms SET name=" + request.args['name'] + " WHERE term_id=" + request.args['id']
+      return send_result(sql)
+   else:
+       return errorMessage
+
+@app.route('/api/terms/id', methods=['DELETE'])
+def term_delete():
+   if 'id' in request.args:
+      sql = "DELETE FROM terms WHERE term_id=" + request.args['id']
+      return send_result(sql)
+   else:
+       return errorMessage
+
 @app.route('/api/users', methods=['GET'])
 def users():
    sql = "SELECT u.user_id, u.username, u.password, u.access_level_id, a.name, u.company_id, c.business_name, u.name, u.phone, u.phone_extension, u.email FROM users AS u, access_levels AS a, companies AS c WHERE u.access_level_id=a.access_level_id AND u.company_id=c.company_id ORDER BY u.user_id"
@@ -381,24 +473,23 @@ def vehicle_by_id():
        return errorMessage
 
 @app.route('/api/vehicles', methods=['POST'])
-def vendor_add():
+def vehicle_add():
    sql = "INSERT INTO vehicles (vehicle_id, man_year, make, model, submodel, engine, notes) VALUES (" + request.args['vehicle_id'] + ", " + request.args['man_year'] + ", " + request.args['make'] + ", " + request.args['model'] + ", " + request.args['submodel'] + ", " + request.args['engine'] + ", " + request.args['notes'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/vehicles/id', methods=['PUT'])
-def vendors_update():
+def vehicle_update():
    if 'id' in request.args:
-      sql = "UPDATE vehicles SET man_year=" + request.args['man_year'] + ", " + "make=" + request.args['make'] + ", " + "model=" + request.args['model'] + ", " + "submodel=" + request.args['submodel'] + ", " + "engine=" + request.args['engine'] + ", " + "notes=" + request.args['notes'] + "WHERE vehicle_id=" + request.args['id']
-      send_result(sql)
+      sql = "UPDATE vehicles SET man_year=" + request.args['man_year'] + ", " + "make=" + request.args['make'] + ", " + "model=" + request.args['model'] + ", " + "submodel=" + request.args['submodel'] + ", " + "engine=" + request.args['engine'] + ", " + "notes=" + request.args['notes'] + " WHERE vehicle_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
 @app.route('/api/vehicles/id', methods=['DELETE'])
-def vendors_delete():
+def vehicle_delete():
    if 'id' in request.args:
       sql = "DELETE FROM vehicles WHERE vehicle_id=" + request.args['id']
-      send_result(sql)
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -415,14 +506,13 @@ def vendor_by_id():
 @app.route('/api/vendors', methods=['POST'])
 def vendor_add():
    sql = "INSERT INTO companies (company_category_id, business_name, contact_name, address, city, state_id, zipcode, phone, fax, email, website) VALUES (" + request.args['company_category_id'] + ", " + request.args['business_name'] + ", " + request.args['contact_name'] + ", " + request.args['address'] + ", " + request.args['city'] + ", " + request.args['state_id'] + ", " + request.args['zipcode'] + ", " + request.args['phone'] + ", " + request.args['fax'] + ", " + request.args['email'] + ", " + request.args['website'] + ")"
-   send_result(sql)
    return send_result(sql)
 
 @app.route('/api/vendors/id', methods=['PUT'])
 def vendors_update():
    if 'id' in request.args:
-      sql = "UPDATE companies SET company_category_id=" + request.args['company_category_id'] + ", " + "business_name=" + request.args['business_name'] + ", " + "contact_name=" + request.args['contact_name'] + ", " + "address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "phone=" + request.args['phone'] + ", " + "fax=" + request.args['fax'] + ", " + "email=" + request.args['email'] + ", " + "website=" + request.args['website'] + "WHERE company_id=" + request.args['id']
-      send_result(sql)
+      sql = "UPDATE companies SET company_category_id=" + request.args['company_category_id'] + ", " + "business_name=" + request.args['business_name'] + ", " + "contact_name=" + request.args['contact_name'] + ", " + "address=" + request.args['address'] + ", " + "city=" + request.args['city'] + ", " + "state_id=" + request.args['state_id'] + ", " + "zipcode=" + request.args['zipcode'] + ", " + "phone=" + request.args['phone'] + ", " + "fax=" + request.args['fax'] + ", " + "email=" + request.args['email'] + ", " + "website=" + request.args['website'] + " WHERE company_id=" + request.args['id']
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -430,7 +520,7 @@ def vendors_update():
 def vendors_delete():
    if 'id' in request.args:
       sql = "DELETE FROM companies WHERE company_id=" + request.args['id']
-      print("sql: " + sql)
+      return send_result(sql)
    else:
        return errorMessage
 
@@ -455,6 +545,8 @@ def send_result(sql):
    cursor = connection.cursor()
    cursor.execute(sql)
    connection.commit()
-
+   resp = jsonify('Successful')
+   resp.status_code = 200
+   return resp
 
 app.run()

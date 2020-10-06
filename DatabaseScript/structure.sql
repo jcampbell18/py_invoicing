@@ -16,6 +16,11 @@ CREATE TABLE `access_levels` (
   `description` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `bid_status` (
+  `bid_status_id` int(10) NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `bids` (
   `bid_id` int(10) NOT NULL,
   `company_id` int(10) NOT NULL,
@@ -24,8 +29,7 @@ CREATE TABLE `bids` (
   `bid_date` date NOT NULL,
   `description` mediumtext NOT NULL,
   `amount` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `approve` tinyint(1) NOT NULL DEFAULT 0,
-  `denied` tinyint(1) NOT NULL DEFAULT 0
+  `bid_status_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `changelogs` (
@@ -181,11 +185,15 @@ CREATE TABLE `vehicles` (
 ALTER TABLE `access_levels`
   ADD PRIMARY KEY (`access_level_id`);
 
+ALTER TABLE `bid_status`
+  ADD PRIMARY KEY (`bid_status_id`);
+
 ALTER TABLE `bids`
   ADD PRIMARY KEY (`bid_id`),
   ADD KEY `ix_company_id` (`company_id`),
   ADD KEY `ix_project_site_id` (`project_site_id`),
-  ADD KEY `ix_sku_id` (`sku_id`);
+  ADD KEY `ix_sku_id` (`sku_id`),
+  ADD KEY `ix_bid_status_id` (`bid_status_id`);
 
 ALTER TABLE `changelogs`
   ADD PRIMARY KEY (`changelog_id`),
@@ -254,6 +262,9 @@ ALTER TABLE `vehicles`
 ALTER TABLE `access_levels`
   MODIFY `access_level_id` int(10) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `bid_status`
+  MODIFY `bid_status_id` int(10) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `bids`
   MODIFY `bid_id` int(10) NOT NULL AUTO_INCREMENT;
 
@@ -297,7 +308,8 @@ ALTER TABLE `vehicles`
 ALTER TABLE `bids`
   ADD CONSTRAINT `fk_company_id2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_project_site_id` FOREIGN KEY (`project_site_id`) REFERENCES `project_sites` (`project_site_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sku_id` FOREIGN KEY (`sku_id`) REFERENCES `sku` (`sku_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_sku_id` FOREIGN KEY (`sku_id`) REFERENCES `sku` (`sku_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_bid_status_id` FOREIGN KEY (`bid_status_id`) REFERENCES `bid_status` (`bid_status_id`) ON UPDATE CASCADE;
 
 ALTER TABLE `changelogs`
   ADD CONSTRAINT `fk_changelog_category_id` FOREIGN KEY (`changelog_category_id`) REFERENCES `changelog_categories` (`changelog_category_id`) ON UPDATE CASCADE;
